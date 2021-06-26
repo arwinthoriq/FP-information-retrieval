@@ -190,31 +190,67 @@ public class a extends javax.swing.JFrame {
     }//GEN-LAST:event_kesimpulanMouseClicked
 
     private void tombol_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_simpanActionPerformed
+        String good ="DATA/unigram_goodspeech.txt"; 
+	String hate ="DATA/unigram_hatespeech.txt"; 
+	String input ="DATA/input.txt"; 
+	String cgood= null; 
+	String chate= null; 
+	String cinput= null; 
         try {
-            // men set file input menjadi kosong
-            File inputnull = new File("DATA/input.txt"); //baca file input.txt
-            PrintWriter pkalnull = new PrintWriter(new FileWriter(inputnull, false)); //simpan data ke file input.txt
-            pkalnull.println(); //print data
-                        
-            //split data inputan lalu simpan ke file input
-            String kalmat; //buat variabel tipe string
-            kalmat = form_input.getText(); //baca line/input
-            String kecil2 = kalmat.toLowerCase(); //mengecilkan semua huruf
-            String[] fkal = kecil2.split("\\s+"); //split data ke bawah
+            File inputkosong = new File("DATA/input.txt"); 
+            PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
+            pkalnullkosong.println();
             
-            // membuat perulangan agar semua line yang terdapat di dalam file input.txt terbaca
-		for(String hukal : fkal) { //buat perulangan
-		File datakal = new File("DATA/input.txt"); //baca file input.txt
-		PrintWriter pkal = new PrintWriter(new FileWriter(datakal, true)); //simpan data ke file input.txt
-		pkal.println(hukal); //print data
-		pkal.close(); //tutup
-                        }
-          //  String msgout;
-           // msgout = form_input.getText().trim();
-            //dout.writeUTF(msgout);
-            //form_kesimpulan.setText("");
+            File proseskosong = new File("DATA/proses_input_unigram.txt"); 
+            PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
+            prosesnullkosong.println();
+            
+            String kalmat; 
+            kalmat = form_input.getText(); 
+            File datakal9 = new File("DATA/input.txt"); 
+            PrintWriter pkal9 = new PrintWriter(new FileWriter(datakal9, true)); 
+            pkal9.println(kalmat); 
+            pkal9.close();
+            
+            cinput = new String(Files.readAllBytes(Paths.get(input)));
+            String kecil9 = cinput.toLowerCase(); 
+            String simbol9 = kecil9.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
+            String[] fkal9 = simbol9.split("\\s+");
+            
+            cgood = new String(Files.readAllBytes(Paths.get(good)));
+            chate = new String(Files.readAllBytes(Paths.get(hate)));
+            for(String hukal9 : fkal9) { 
+                boolean sapigood = cgood.contains(hukal9); 
+                boolean sapihate = cgood.contains(hukal9); 
+                if (sapigood){ 
+                    File datasapigood = new File("DATA/proses_input_unigram.txt"); 
+                    PrintWriter prsapigood = new PrintWriter(new FileWriter(datasapigood, true)); 
+                    prsapigood.println(hukal9); 
+                    prsapigood.close(); 
+                    // durung iso nge print
+                    String textgood = "goodspeech"; 
+                    File hasil_unigram_awal = new File("hasil_unigram_awal.txt"); //baca file inputPROSES.txt
+                    PrintWriter prtextgood = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); //simpan data ke file inputPROSES.txt
+                    prtextgood.println(textgood); //print data
+                    prtextgood.close();
+                } else if (sapihate){ 
+                    File datasapihate = new File("DATA/proses_input_unigram.txt"); 
+                    PrintWriter prsapihate = new PrintWriter(new FileWriter(datasapihate, true)); 
+                    prsapihate.println(hukal9); 
+                    prsapihate.close(); 
+                    // durung iso nge print
+                    String texthate = "hatespeech"; 
+                    File hasil_unigram_awal = new File("hasil_unigram_awal.txt"); //baca file inputPROSES.txt
+                    PrintWriter prtexthate = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); //simpan data ke file inputPROSES.txt
+                    prtexthate.println(texthate); //print data
+                    prtexthate.close();
+                } else if (sapihate){ 
+                }
+            }
+               
         } catch (Exception e) {
         }
+        
     }//GEN-LAST:event_tombol_simpanActionPerformed
 
     private void analisis1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_analisis1MouseClicked
@@ -234,6 +270,7 @@ public class a extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -251,14 +288,26 @@ public class a extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(a.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-	String data_mentah ="DATA/data_goodspeech.txt"; 
+        
+        String data_mentah ="DATA/data_goodspeech.txt"; 
 	String data_mentahhate ="DATA/data_hatespeech.txt"; 
-	String stopword_list_tala ="DATA/stopword_list_tala.txt"; 
+	String stopword_list_tala ="DATA/stopwocrd_list_tala.txt"; 
 	String cdata_mentah= null; 
 	String cdata_mentahhate= null; 
 	String cstopword_list_tala= null; 
+        
+	String tala ="DATA/stopword_list_tala.txt"; 
+	String ctala= null; 
         try {
+            
+            File inputkosong = new File("DATA/input.txt"); 
+            PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
+            pkalnullkosong.println();
+            
+            File proseskosong = new File("DATA/proses_input_unigram.txt"); 
+            PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
+            prosesnullkosong.println();
+            
             // GOOD-SPEECH men set file input menjadi kosong
             File inputnull = new File("DATA/unigram_goodspeech.txt"); 
             PrintWriter pkalnull = new PrintWriter(new FileWriter(inputnull, false)); 
@@ -267,9 +316,11 @@ public class a extends javax.swing.JFrame {
             String kecili = cdata_mentah.toLowerCase(); 
             String simbol = kecili.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
             String[] fkal = simbol.split("\\s+"); 
-            cstopword_list_tala = new String(Files.readAllBytes(Paths.get(stopword_list_tala)));
+            //cstopword_list_tala = new String(Files.readAllBytes(Paths.get(stopword_list_tala))); //yg eror pake stopword
+            ctala = new String(Files.readAllBytes(Paths.get(tala)));
             for(String hukal : fkal) { 
-               boolean ikan = cstopword_list_tala.contains(hukal); 
+             //  boolean ikan = hukal.contains(hukal); 
+               boolean ikan = ctala.contains(hukal); 
                if (!ikan){ 
                 File dataindonesia = new File("DATA/unigram_goodspeech.txt"); 
                 PrintWriter prindonesia = new PrintWriter(new FileWriter(dataindonesia, true)); 
@@ -285,9 +336,10 @@ public class a extends javax.swing.JFrame {
             String kecilihate = cdata_mentahhate.toLowerCase(); 
             String simbolhate = kecilihate.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
             String[] fkalhate = simbolhate.split("\\s+"); 
-            cstopword_list_tala = new String(Files.readAllBytes(Paths.get(stopword_list_tala)));
+            //cstopword_list_tala = new String(Files.readAllBytes(Paths.get(stopword_list_tala)));
+            ctala = new String(Files.readAllBytes(Paths.get(tala)));
             for(String hukalhate : fkalhate) { 
-               boolean ikanhate = cstopword_list_tala.contains(hukalhate); 
+               boolean ikanhate = ctala.contains(hukalhate); 
                if (!ikanhate){ 
                 File datahate = new File("DATA/unigram_hatespeech.txt"); 
                 PrintWriter prhate = new PrintWriter(new FileWriter(datahate, true)); 
@@ -298,6 +350,7 @@ public class a extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(a.class.getName()).log(Level.SEVERE, null, ex);
         }
+	
        
         
         /* Create and display the form */
