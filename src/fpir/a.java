@@ -69,6 +69,8 @@ public class a extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         goods = new javax.swing.JLabel();
         hates = new javax.swing.JLabel();
+        macan = new javax.swing.JLabel();
+        singa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(875, 544));
@@ -169,8 +171,12 @@ public class a extends javax.swing.JFrame {
                         .addComponent(form_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                         .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(hates, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(goods, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(hates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(goods, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(singa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                        .addComponent(macan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(navbar, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
         );
@@ -195,6 +201,10 @@ public class a extends javax.swing.JFrame {
                         .addComponent(goods, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hates, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(macan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(singa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(210, 210, 210))))
@@ -235,6 +245,14 @@ public class a extends javax.swing.JFrame {
             PrintWriter prosesnullunigram_awal = new PrintWriter(new FileWriter(unigram_awal, false));
             prosesnullunigram_awal.println();
             
+            File hasil_unigram_goodspeech = new File("DATA/hasil_unigram_goodspeech.txt"); 
+            PrintWriter prhasil_unigram_goodspeech = new PrintWriter(new FileWriter(hasil_unigram_goodspeech, false));
+            prhasil_unigram_goodspeech.println();
+            
+            File hasil_unigram_hatespeech = new File("DATA/hasil_unigram_hatespeech.txt"); 
+            PrintWriter prhasil_unigram_hatespeech = new PrintWriter(new FileWriter(hasil_unigram_hatespeech, false));
+            prhasil_unigram_hatespeech.println();
+            
             String kalmat; 
             kalmat = form_input.getText(); 
             File datakal9 = new File("DATA/input.txt"); 
@@ -264,22 +282,27 @@ public class a extends javax.swing.JFrame {
                     prtextgood.println(textgood);
                     prtextgood.close();
                     
-                    BufferedReader listigood = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
-                    boolean hasdigood = true;
-                    String lineigood; 
-                    Set<String> linesigood = new HashSet<String>(); 
-                    while ((lineigood = listigood.readLine()) != null) { 
-                        if (linesigood.contains(lineigood)) { 
-                            hasdigood = false; 
-                        }
-                        linesigood.add(lineigood);
-                    }
-                    if (hasdigood) { 
-                        File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
-                        PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
-                        prinddataindgood.println(textgood);
-                        prinddataindgood.close();  
-                    }
+                    File hasil_macan = new File("DATA/hasil_unigram_goodspeech.txt"); 
+                    PrintWriter hasil_macangood = new PrintWriter(new FileWriter(hasil_macan, true)); 
+                    hasil_macangood.println(textgood);
+                    hasil_macangood.close();
+                    
+                    //BufferedReader listigood = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
+                    //boolean hasdigood = true;
+                    //String lineigood; 
+                    //Set<String> linesigood = new HashSet<String>(); 
+                    //while ((lineigood = listigood.readLine()) != null) { 
+                    //    if (linesigood.contains(lineigood)) { 
+                    //        hasdigood = false; 
+                    //    }
+                    //    linesigood.add(lineigood);
+                    //}
+                    //if (hasdigood) { 
+                    //    File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
+                    //    PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
+                    //    prinddataindgood.println(textgood);
+                    //    prinddataindgood.close();  
+                    //}
                     
                 } else if (sapihate){ 
                     File datasapihate = new File("DATA/proses_input_unigram.txt"); 
@@ -292,27 +315,30 @@ public class a extends javax.swing.JFrame {
                     PrintWriter prtexthate = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
                     prtexthate.println(texthate); 
                     prtexthate.close();
-                      
-                    BufferedReader listihate = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
-                    boolean hasdihate = true;
-                    String lineihate; 
-                    Set<String> linesihate = new HashSet<String>(); 
-                    while ((lineihate = listihate.readLine()) != null) { 
-                        if (linesihate.contains(lineihate)) { 
-                            hasdihate = false; 
-                        }
-                        linesihate.add(lineihate);
-                    }
-                    if (hasdihate) { 
-                        File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
-                        PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
-                        prinddataindhate.println(texthate);
-                        prinddataindhate.close();  
-                    }
+                    
+                    File hasil_singa = new File("DATA/hasil_unigram_hatespeech.txt"); 
+                    PrintWriter hasil_singagood = new PrintWriter(new FileWriter(hasil_singa, true)); 
+                    hasil_singagood.println(texthate);
+                    hasil_singagood.close();
+                    
+                    //BufferedReader listihate = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
+                    //boolean hasdihate = true;
+                    //String lineihate; 
+                    //Set<String> linesihate = new HashSet<String>(); 
+                    //while ((lineihate = listihate.readLine()) != null) { 
+                    //    if (linesihate.contains(lineihate)) { 
+                    //        hasdihate = false; 
+                    //    }
+                    //    linesihate.add(lineihate);
+                    //}
+                    //if (hasdihate) { 
+                    //    File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
+                    //    PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
+                    //    prinddataindhate.println(texthate);
+                    //    prinddataindhate.close();  
+                    //}
                 }
             } //for
-                ok = new String(Files.readAllBytes(Paths.get(oj)));
-                akhir.setText(ok); 
                 
             String jgood ="DATA/unigram_goodspeech.txt"; 
             String pjgood= null; 
@@ -320,7 +346,7 @@ public class a extends javax.swing.JFrame {
             String[] opjgood = pjgood.split("\\s+"); // bawah
             int Barisjgood  = opjgood.length; 
             String jumlahBarisjgood  = Integer.toString(Barisjgood);
-            goods.setText(jumlahBarisjgood);
+            goods.setText("Data Goodspeech = " + jumlahBarisjgood);
             
             String jhate ="DATA/unigram_hatespeech.txt"; 
             String pjhate= null; 
@@ -328,7 +354,55 @@ public class a extends javax.swing.JFrame {
             String[] opjhate = pjhate.split("\\s+"); // bawah
             int Barisjhate  = opjhate.length; 
             String jumlahBarisjhate  = Integer.toString(Barisjhate);
-            hates.setText(jumlahBarisjhate);
+            hates.setText("Data Hatespeech = " + jumlahBarisjhate);
+            
+           // HITUNG JUMLAH INPUT GOODSPEECH
+            String macan1 ="DATA/hasil_unigram_goodspeech.txt"; 
+            String macan2 = null; 
+            macan2 = new String(Files.readAllBytes(Paths.get(macan1)));
+            String[] macan3 = macan2.split("\\s+"); // bawah
+            int macan4  = macan3.length; 
+            String macan5  = Integer.toString(macan4);
+            macan.setText("input goodspeech terdeteksi = " + macan5);
+             // HITUNG JUMLAH INPUT HATESPEECH
+            String singa1 ="DATA/hasil_unigram_hatespeech.txt"; 
+            String singa2 = null; 
+            singa2 = new String(Files.readAllBytes(Paths.get(singa1)));
+            String[] singa3 = singa2.split("\\s+"); // bawah
+            int singa4  = singa3.length; 
+            String singa5  = Integer.toString(singa4);
+            singa.setText("input hatespeech terdeteksi = " + singa5);
+             // HASIL PERBANINGAN
+             if(macan4 > singa4) {
+                File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
+                PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
+                prinddataindgood.println("Goodspeech");
+                prinddataindgood.close();  
+             } else if(singa4 > macan4) {
+                File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
+                PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
+                prinddataindhate.println("Hatespeech");
+                prinddataindhate.close();  
+             }else if(singa4 == macan4) {
+                File dataindno = new File("DATA/hasil_unigram_akhir.txt"); 
+                PrintWriter prinddataindno = new PrintWriter(new FileWriter(dataindno, false)); 
+                prinddataindno.println("Tidak ada hasil");
+                prinddataindno.close();  
+             }
+               //     String macan0 = "goodspeech";
+                 //   String macan1 ="DATA/hasil_unigram_awal.txt"; 
+                   // String macan2 = null; 
+                  //  macan2 = new String(Files.readAllBytes(Paths.get(macan1)));
+                    //String[] macan3 = macan2.split("\\s+"); // bawah
+                   // if(macan2 == macan0){
+                       // int macan4  = macan3.length; 
+                       // String macan5  = Integer.toString(macan4);
+                       // macan.setText("Jumlah input terdeteksi = " + macan5);
+                    //}
+
+                ok = new String(Files.readAllBytes(Paths.get(oj)));
+                akhir.setText(ok); 
+                  
         } catch (Exception e) {
         }
         
@@ -502,8 +576,10 @@ public class a extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel judul;
     private javax.swing.JLabel kesimpulan;
+    private javax.swing.JLabel macan;
     private javax.swing.JPanel navbar;
     private javax.swing.JPanel sidebar;
+    private javax.swing.JLabel singa;
     private static javax.swing.JButton tombol_simpan;
     // End of variables declaration//GEN-END:variables
 }

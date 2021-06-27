@@ -41,8 +41,14 @@
                       <Component id="form_kesimpulan" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
                       <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="hates" min="-2" pref="113" max="-2" attributes="0"/>
-                  <Component id="goods" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="hates" alignment="0" pref="173" max="32767" attributes="0"/>
+                      <Component id="goods" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="singa" alignment="0" pref="224" max="32767" attributes="0"/>
+                      <Component id="macan" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -72,6 +78,10 @@
                       <Component id="goods" min="-2" pref="19" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="hates" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="macan" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="singa" min="-2" pref="28" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="form_kesimpulan" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
@@ -242,6 +252,10 @@
     <Component class="javax.swing.JLabel" name="goods">
     </Component>
     <Component class="javax.swing.JLabel" name="hates">
+    </Component>
+    <Component class="javax.swing.JLabel" name="macan">
+    </Component>
+    <Component class="javax.swing.JLabel" name="singa">
     </Component>
   </SubComponents>
 </Form>
