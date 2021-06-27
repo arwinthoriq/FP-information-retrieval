@@ -65,6 +65,10 @@ public class a extends javax.swing.JFrame {
         form_input = new javax.swing.JTextField();
         tombol_simpan = new javax.swing.JButton();
         form_kesimpulan = new javax.swing.JTextField();
+        akhir = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        goods = new javax.swing.JLabel();
+        hates = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(875, 544));
@@ -121,14 +125,14 @@ public class a extends javax.swing.JFrame {
 
         judul.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         judul.setForeground(new java.awt.Color(255, 255, 255));
-        judul.setText("ANALISIS SENTIMEN HATESPEECH PADA TWITTER");
+        judul.setText("ANALISIS SENTIMEN #HATESPEECH PADA TWITTER");
 
         javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
         navbarLayout.setHorizontalGroup(
             navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navbarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(290, Short.MAX_VALUE)
                 .addComponent(judul)
                 .addGap(272, 272, 272))
         );
@@ -145,6 +149,10 @@ public class a extends javax.swing.JFrame {
             }
         });
 
+        form_kesimpulan.setEditable(false);
+
+        akhir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,17 +161,24 @@ public class a extends javax.swing.JFrame {
                 .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tombol_simpan)
-                    .addComponent(form_input, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(tombol_simpan)
+                            .addGap(106, 106, 106)
+                            .addComponent(akhir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(form_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                        .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(hates, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(goods, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(navbar, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(navbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,10 +186,18 @@ public class a extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(form_input, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tombol_simpan)
-                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tombol_simpan)
+                            .addComponent(akhir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(goods, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hates, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(210, 210, 210))))
         );
 
         pack();
@@ -184,7 +207,7 @@ public class a extends javax.swing.JFrame {
         // TODO add your handling code here:
         form_kesimpulan.setVisible(true);
         form_input.setVisible(true);
-        form_input.setEditable(false);
+        //form_input.setEditable(false);
         tombol_simpan.setVisible(false);
 
     }//GEN-LAST:event_kesimpulanMouseClicked
@@ -196,6 +219,9 @@ public class a extends javax.swing.JFrame {
 	String cgood= null; 
 	String chate= null; 
 	String cinput= null; 
+        
+	String oj ="DATA/hasil_unigram_akhir.txt"; 
+	String ok= null; 
         try {
             File inputkosong = new File("DATA/input.txt"); 
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
@@ -204,6 +230,10 @@ public class a extends javax.swing.JFrame {
             File proseskosong = new File("DATA/proses_input_unigram.txt"); 
             PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
             prosesnullkosong.println();
+            
+            File unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
+            PrintWriter prosesnullunigram_awal = new PrintWriter(new FileWriter(unigram_awal, false));
+            prosesnullunigram_awal.println();
             
             String kalmat; 
             kalmat = form_input.getText(); 
@@ -221,7 +251,7 @@ public class a extends javax.swing.JFrame {
             chate = new String(Files.readAllBytes(Paths.get(hate)));
             for(String hukal9 : fkal9) { 
                 boolean sapigood = cgood.contains(hukal9); 
-                boolean sapihate = cgood.contains(hukal9); 
+                boolean sapihate = chate.contains(hukal9); 
                 if (sapigood){ 
                     File datasapigood = new File("DATA/proses_input_unigram.txt"); 
                     PrintWriter prsapigood = new PrintWriter(new FileWriter(datasapigood, true)); 
@@ -229,10 +259,28 @@ public class a extends javax.swing.JFrame {
                     prsapigood.close(); 
                     // durung iso nge print
                     String textgood = "goodspeech"; 
-                    File hasil_unigram_awal = new File("hasil_unigram_awal.txt"); //baca file inputPROSES.txt
-                    PrintWriter prtextgood = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); //simpan data ke file inputPROSES.txt
-                    prtextgood.println(textgood); //print data
+                    File hasil_unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
+                    PrintWriter prtextgood = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
+                    prtextgood.println(textgood);
                     prtextgood.close();
+                    
+                    BufferedReader listigood = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
+                    boolean hasdigood = true;
+                    String lineigood; 
+                    Set<String> linesigood = new HashSet<String>(); 
+                    while ((lineigood = listigood.readLine()) != null) { 
+                        if (linesigood.contains(lineigood)) { 
+                            hasdigood = false; 
+                        }
+                        linesigood.add(lineigood);
+                    }
+                    if (hasdigood) { 
+                        File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
+                        PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
+                        prinddataindgood.println(textgood);
+                        prinddataindgood.close();  
+                    }
+                    
                 } else if (sapihate){ 
                     File datasapihate = new File("DATA/proses_input_unigram.txt"); 
                     PrintWriter prsapihate = new PrintWriter(new FileWriter(datasapihate, true)); 
@@ -240,14 +288,47 @@ public class a extends javax.swing.JFrame {
                     prsapihate.close(); 
                     // durung iso nge print
                     String texthate = "hatespeech"; 
-                    File hasil_unigram_awal = new File("hasil_unigram_awal.txt"); //baca file inputPROSES.txt
-                    PrintWriter prtexthate = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); //simpan data ke file inputPROSES.txt
-                    prtexthate.println(texthate); //print data
+                    File hasil_unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
+                    PrintWriter prtexthate = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
+                    prtexthate.println(texthate); 
                     prtexthate.close();
-                } else if (sapihate){ 
+                      
+                    BufferedReader listihate = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
+                    boolean hasdihate = true;
+                    String lineihate; 
+                    Set<String> linesihate = new HashSet<String>(); 
+                    while ((lineihate = listihate.readLine()) != null) { 
+                        if (linesihate.contains(lineihate)) { 
+                            hasdihate = false; 
+                        }
+                        linesihate.add(lineihate);
+                    }
+                    if (hasdihate) { 
+                        File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
+                        PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
+                        prinddataindhate.println(texthate);
+                        prinddataindhate.close();  
+                    }
                 }
-            }
-               
+            } //for
+                ok = new String(Files.readAllBytes(Paths.get(oj)));
+                akhir.setText(ok); 
+                
+            String jgood ="DATA/unigram_goodspeech.txt"; 
+            String pjgood= null; 
+            pjgood = new String(Files.readAllBytes(Paths.get(jgood)));
+            String[] opjgood = pjgood.split("\\s+"); // bawah
+            int Barisjgood  = opjgood.length; 
+            String jumlahBarisjgood  = Integer.toString(Barisjgood);
+            goods.setText(jumlahBarisjgood);
+            
+            String jhate ="DATA/unigram_hatespeech.txt"; 
+            String pjhate= null; 
+            pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
+            String[] opjhate = pjhate.split("\\s+"); // bawah
+            int Barisjhate  = opjhate.length; 
+            String jumlahBarisjhate  = Integer.toString(Barisjhate);
+            hates.setText(jumlahBarisjhate);
         } catch (Exception e) {
         }
         
@@ -258,7 +339,7 @@ public class a extends javax.swing.JFrame {
         form_input.setVisible(true);
         tombol_simpan.setVisible(true);
         form_kesimpulan.setVisible(false);
-        form_input.setEditable(true);
+       // form_input.setEditable(true);
     }//GEN-LAST:event_analisis1MouseClicked
 
     /**
@@ -287,7 +368,7 @@ public class a extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(a.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        //</editor-fold> 
         
         String data_mentah ="DATA/data_goodspeech.txt"; 
 	String data_mentahhate ="DATA/data_hatespeech.txt"; 
@@ -308,8 +389,12 @@ public class a extends javax.swing.JFrame {
             PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
             prosesnullkosong.println();
             
+            File unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
+            PrintWriter prosesnullunigram_awal = new PrintWriter(new FileWriter(unigram_awal, false));
+            prosesnullunigram_awal.println();
+            
             // GOOD-SPEECH men set file input menjadi kosong
-            File inputnull = new File("DATA/unigram_goodspeech.txt"); 
+            File inputnull = new File("DATA/unigram_goodspeech_tanpa_contains.txt"); 
             PrintWriter pkalnull = new PrintWriter(new FileWriter(inputnull, false)); 
             pkalnull.println(); //print data
             cdata_mentah = new String(Files.readAllBytes(Paths.get(data_mentah))); 
@@ -320,16 +405,17 @@ public class a extends javax.swing.JFrame {
             ctala = new String(Files.readAllBytes(Paths.get(tala)));
             for(String hukal : fkal) { 
              //  boolean ikan = hukal.contains(hukal); 
-               boolean ikan = ctala.contains(hukal); 
+               boolean ikan = ctala.contains(hukal);  
                if (!ikan){ 
-                File dataindonesia = new File("DATA/unigram_goodspeech.txt"); 
+                File dataindonesia = new File("DATA/unigram_goodspeech_tanpa_contains.txt"); 
                 PrintWriter prindonesia = new PrintWriter(new FileWriter(dataindonesia, true)); 
                 prindonesia.println(hukal); 
-                prindonesia.close(); 
+                prindonesia.close();  
                 }
             }
+            
             // HATE-SPEECH men set file input menjadi kosong
-            File inputnullhate = new File("DATA/unigram_hatespeech.txt"); 
+            File inputnullhate = new File("DATA/unigram_hatespeech_tanpa_contains.txt"); 
             PrintWriter pkalnullhate = new PrintWriter(new FileWriter(inputnullhate, false)); 
             pkalnullhate.println(); //print data
             cdata_mentahhate = new String(Files.readAllBytes(Paths.get(data_mentahhate))); 
@@ -341,12 +427,55 @@ public class a extends javax.swing.JFrame {
             for(String hukalhate : fkalhate) { 
                boolean ikanhate = ctala.contains(hukalhate); 
                if (!ikanhate){ 
-                File datahate = new File("DATA/unigram_hatespeech.txt"); 
+                File datahate = new File("DATA/unigram_hatespeech_tanpa_contains.txt"); 
                 PrintWriter prhate = new PrintWriter(new FileWriter(datahate, true)); 
                 prhate.println(hukalhate); 
                 prhate.close(); 
                 }
             }
+            
+            //  MENGHAPUS DATA YANG SAMA ANTARA unigram_goodspeech.txt DENGAN unigram_hatespeech.txt
+            
+            String z ="DATA/unigram_goodspeech_tanpa_contains.txt"; 
+            String za= null; 
+            za = new String(Files.readAllBytes(Paths.get(z)));
+            String[] zaqbawah = za.split("\\s+"); // bawah
+            String[] zaq = za.split("\\s+", 1); // datar
+            
+            String x ="DATA/unigram_hatespeech_tanpa_contains.txt"; 
+            String xs= null; 
+            xs = new String(Files.readAllBytes(Paths.get(x)));
+            String[] xswbawah = xs.split("\\s+"); // bawah
+            String[] xsw = xs.split("\\s+", 1);//datar
+            
+            //  goodspeech contains hatespeech = goospeech
+            File bakarnul = new File("DATA/unigram_goodspeech.txt"); 
+            PrintWriter pkabakarnul = new PrintWriter(new FileWriter(bakarnul, false)); 
+            pkabakarnul.println(); 
+            for(String siputgood : zaqbawah) {   // string : split
+            boolean siputbakar = xs.contains(siputgood);   // bawah contains datar
+                if(!siputbakar){
+                    File zaq1 = new File("DATA/unigram_goodspeech.txt"); 
+                    PrintWriter zaq10 = new PrintWriter(new FileWriter(zaq1, true)); 
+                    zaq10.println(siputgood); 
+                    zaq10.close();
+                }
+            }
+            //  hatespeech contains goodspeech = hatespeech
+            File gorengnul = new File("DATA/unigram_hatespeech.txt"); 
+            PrintWriter pkagorengnul = new PrintWriter(new FileWriter(gorengnul, false)); 
+            pkagorengnul.println(); 
+            for(String siputhate : xswbawah) {   // string : split
+            boolean siputgoreng = za.contains(siputhate);   // bawah contains datar
+                if(!siputgoreng){
+                    File xsw1 = new File("DATA/unigram_hatespeech.txt"); 
+                    PrintWriter xsw10 = new PrintWriter(new FileWriter(xsw1, true)); 
+                    xsw10.println(siputhate); 
+                    xsw10.close();
+                }
+            }
+            
+
         } catch (IOException ex) {
             Logger.getLogger(a.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -364,9 +493,13 @@ public class a extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel akhir;
     private javax.swing.JLabel analisis1;
     private static javax.swing.JTextField form_input;
     private static javax.swing.JTextField form_kesimpulan;
+    private javax.swing.JLabel goods;
+    private javax.swing.JLabel hates;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel judul;
     private javax.swing.JLabel kesimpulan;
     private javax.swing.JPanel navbar;
