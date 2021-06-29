@@ -28,6 +28,7 @@ import java.lang.reflect.Array;
 import java.util.Vector;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -283,8 +284,7 @@ public class a extends javax.swing.JFrame {
     }//GEN-LAST:event_kesimpulanMouseClicked
 
     private void tombol_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_simpanActionPerformed
-        naive.setVisible(true);
-        svm.setVisible(true);
+        
         String good ="DATA/unigram_goodspeech.txt"; 
 	String hate ="DATA/unigram_hatespeech.txt"; 
 	String input ="DATA/input.txt"; 
@@ -295,6 +295,7 @@ public class a extends javax.swing.JFrame {
 	String oj ="DATA/hasil_unigram_akhir.txt"; 
 	String ok= null; 
         try {
+            //  UNIGRAM - NAIVE BAYES
             File inputkosong = new File("DATA/input.txt"); 
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
             pkalnullkosong.println();
@@ -401,90 +402,132 @@ public class a extends javax.swing.JFrame {
                     //}
                 }
             } //for
-                
-            String jgood ="DATA/unigram_goodspeech.txt"; 
-            String pjgood= null; 
-            pjgood = new String(Files.readAllBytes(Paths.get(jgood)));
-            String[] opjgood = pjgood.split("\\s+"); // bawah
-            int Barisjgood  = opjgood.length; 
-            String jumlahBarisjgood  = Integer.toString(Barisjgood);
-            goods.setText("Data Goodspeech = " + jumlahBarisjgood);
             
-            String jhate ="DATA/unigram_hatespeech.txt"; 
-            String pjhate= null; 
-            pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
-            String[] opjhate = pjhate.split("\\s+"); // bawah
-            int Barisjhate  = opjhate.length; 
-            String jumlahBarisjhate  = Integer.toString(Barisjhate);
-            hates.setText("Data Hatespeech = " + jumlahBarisjhate);
-            
-            int data_goodhate = Barisjgood + Barisjhate;
-            String jumlahdata_goodhate  = Integer.toString(data_goodhate);
-            goodhates.setText("Data Total = " + jumlahdata_goodhate);
-            
-           // HITUNG JUMLAH INPUT GOODSPEECH
-            String macan1 ="DATA/hasil_unigram_goodspeech.txt"; 
-            String macan2 = null; 
-            macan2 = new String(Files.readAllBytes(Paths.get(macan1)));
-            String[] macan3 = macan2.split("\\s+"); // bawah
-            int macan4  = macan3.length; 
-            String macan5  = Integer.toString(macan4);
-            macan.setText("Goodspeech Terdeteksi = " + macan5);
-             // HITUNG JUMLAH INPUT HATESPEECH
-            String singa1 ="DATA/hasil_unigram_hatespeech.txt"; 
-            String singa2 = null; 
-            singa2 = new String(Files.readAllBytes(Paths.get(singa1)));
-            String[] singa3 = singa2.split("\\s+"); // bawah
-            int singa4  = singa3.length; 
-            String singa5  = Integer.toString(singa4);
-            singa.setText("Hatespeech Terdeteksi = " + singa5);
-            
-            double nbcgood1 = Barisjgood * macan4;
-            double nbcgood2 = data_goodhate * Barisjgood;
-            double nbcgood3 = nbcgood1 / nbcgood2;
-            //String unigram_nbcgood  = Double.toString(nbcgood3);
-            String u_nbcgood = String.format("%.10f",nbcgood3);
-            totalgood.setText("Hasil Goodspeech = " + jumlahBarisjgood +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ macan5 +" "+"/"+" "+ jumlahBarisjgood );
-            hasil_ugood.setText("="+" "+ u_nbcgood);
-            
-            double nbchate1 = Barisjhate * singa4;
-            double nbchate2 = data_goodhate * Barisjhate;
-            double nbchate3 = nbchate1 / nbchate2;
-            //String unigram_nbchate  = Double.toString(nbchate3);
-            String u_nbchate = String.format("%.10f",nbchate3);
-            totalhate.setText("Hasil Hatespeech = " + jumlahBarisjhate +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ singa5 +" "+"/"+" "+ jumlahBarisjhate ); 
-            hasil_uhate.setText("="+" "+ u_nbchate);
-            
-             // HASIL PERBANINGAN
-             if(nbcgood3 > nbchate3) {
-                File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
-                PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
-                prinddataindgood.println("Goodspeech");
-                prinddataindgood.close();  
-             } else if(nbchate3 > nbcgood3) {
-                File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
-                PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
-                prinddataindhate.println("Hatespeech");
-                prinddataindhate.close();  
-             }else if(nbcgood3 == nbchate3) {
-                File dataindno = new File("DATA/hasil_unigram_akhir.txt"); 
-                PrintWriter prinddataindno = new PrintWriter(new FileWriter(dataindno, false)); 
-                prinddataindno.println("Tidak ada hasil");
-                prinddataindno.close();  
-             }
-               //     String macan0 = "goodspeech";
-                 //   String macan1 ="DATA/hasil_unigram_awal.txt"; 
-                   // String macan2 = null; 
-                  //  macan2 = new String(Files.readAllBytes(Paths.get(macan1)));
-                    //String[] macan3 = macan2.split("\\s+"); // bawah
-                   // if(macan2 == macan0){
-                       // int macan4  = macan3.length; 
-                       // String macan5  = Integer.toString(macan4);
-                       // macan.setText("Jumlah input terdeteksi = " + macan5);
-                    //}
+            String olkjnj ="DATA/input.txt"; 
+            String oijuiou = null; 
+            oijuiou = new String(Files.readAllBytes(Paths.get(olkjnj)));
+            String[] ukjmyhtrf = oijuiou.split("\\s+"); // bawah
+            int esrfwe  = ukjmyhtrf.length; 
+            int ewrwe = 0;
+            if(esrfwe != ewrwe){
+                naive.setVisible(true);
+                svm.setVisible(true);
+                String jgood ="DATA/unigram_goodspeech.txt"; 
+                String pjgood= null; 
+                pjgood = new String(Files.readAllBytes(Paths.get(jgood)));
+                String[] opjgood = pjgood.split("\\s+"); // bawah
+                int Barisjgood  = opjgood.length; 
+                String jumlahBarisjgood  = Integer.toString(Barisjgood);
+                goods.setText("Data Goodspeech = " + jumlahBarisjgood);
 
-                ok = new String(Files.readAllBytes(Paths.get(oj)));
-                akhir.setText(ok); 
+                String jhate ="DATA/unigram_hatespeech.txt"; 
+                String pjhate= null; 
+                pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
+                String[] opjhate = pjhate.split("\\s+"); // bawah
+                int Barisjhate  = opjhate.length; 
+                String jumlahBarisjhate  = Integer.toString(Barisjhate);
+                hates.setText("Data Hatespeech = " + jumlahBarisjhate);
+
+                int data_goodhate = Barisjgood + Barisjhate;
+                String jumlahdata_goodhate  = Integer.toString(data_goodhate);
+                goodhates.setText("Data Total = " + jumlahdata_goodhate);
+
+               // HITUNG JUMLAH INPUT GOODSPEECH
+                String macan1 ="DATA/hasil_unigram_goodspeech.txt"; 
+                String macan2 = null; 
+                macan2 = new String(Files.readAllBytes(Paths.get(macan1)));
+                String[] macan3 = macan2.split("\\s+"); // bawah
+                int macan4  = macan3.length; 
+                String macan5  = Integer.toString(macan4);
+                String kfmd ="goodspeech";
+                boolean lkmkl = kfmd.contains(macan2); 
+                if(!lkmkl){
+                    macan.setText("Goodspeech Terdeteksi = " + macan5);
+                }else {
+                    macan.setText("Goodspeech Terdeteksi = 0");
+                }
+                 // HITUNG JUMLAH INPUT HATESPEECH
+                String singa1 ="DATA/hasil_unigram_hatespeech.txt"; 
+                String singa2 = null; 
+                singa2 = new String(Files.readAllBytes(Paths.get(singa1)));
+                String[] singa3 = singa2.split("\\s+"); // bawah
+                int singa4  = singa3.length; 
+                String singa5  = Integer.toString(singa4);
+                String kfmdsinga ="hatespeech";
+                boolean lkmklsinga = kfmdsinga.contains(singa2); // jika pake ini maka akibatnya kata hatespeech tidak akan terdeteksi
+                if(!lkmklsinga){
+                    singa.setText("Hatespeech Terdeteksi = " + singa5);
+                }else {
+                    singa.setText("Hatespeech Terdeteksi = 0");
+                }
+                double nbcgood1 = Barisjgood * macan4;
+                double nbcgood2 = data_goodhate * Barisjgood;
+                double nbcgood3 = nbcgood1 / nbcgood2;
+                //String unigram_nbcgood  = Double.toString(nbcgood3);
+                String u_nbcgood = String.format("%.10f",nbcgood3);
+                if(!lkmkl){
+                    totalgood.setText("Hasil Goodspeech = " + jumlahBarisjgood +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ macan5 +" "+"/"+" "+ jumlahBarisjgood );
+                    hasil_ugood.setText("="+" "+ u_nbcgood);
+                }else {
+                    totalgood.setText("Hasil Goodspeech = ");
+                    hasil_ugood.setText("="+" " );
+                }
+                double nbchate1 = Barisjhate * singa4;
+                double nbchate2 = data_goodhate * Barisjhate;
+                double nbchate3 = nbchate1 / nbchate2;
+                //String unigram_nbchate  = Double.toString(nbchate3);
+                String u_nbchate = String.format("%.10f",nbchate3);
+                if(!lkmklsinga){
+                    totalhate.setText("Hasil Hatespeech = " + jumlahBarisjhate +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ singa5 +" "+"/"+" "+ jumlahBarisjhate ); 
+                    hasil_uhate.setText("="+" "+ u_nbchate);
+                }else {
+                    totalhate.setText("Hasil Hatespeech = ");
+                    hasil_uhate.setText("="+" " );
+                }
+
+                    String cd ="DATA/hasil_unigram_awal.txt"; 
+                    String cd2 = null; 
+                    cd2 = new String(Files.readAllBytes(Paths.get(cd)));
+                    String[] cd3 = cd2.split("\\s+"); // bawah
+                    int cd4  = cd3.length; 
+                    String cd5  = Integer.toString(cd4);
+                    int cd1 = 1;
+
+                 // HASIL PERBANINGAN
+                 if(nbcgood3 > nbchate3) {
+                    File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
+                    PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
+                    prinddataindgood.println("Goodspeech");
+                    prinddataindgood.close();  
+                 } else if(nbchate3 > nbcgood3) {
+                    File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
+                    PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
+                    prinddataindhate.println("Hatespeech");
+                    prinddataindhate.close();  
+                 }else if(cd4 == cd1){ // jika hanya 1 kata yg di input
+                    String cd6 ="DATA/hasil_unigram_awal.txt"; 
+                    String cd7 = null; 
+                    cd7 = new String(Files.readAllBytes(Paths.get(cd6)));
+                    File cd8 = new File("DATA/hasil_unigram_akhir.txt"); 
+                    PrintWriter cd9 = new PrintWriter(new FileWriter(cd8, false)); 
+                    cd9.println(cd7);
+                    cd9.close(); 
+                 }else if(nbcgood3 == nbchate3) { // jika hasil nya imbang
+                    File dataindno = new File("DATA/hasil_unigram_akhir.txt"); 
+                    PrintWriter prinddataindno = new PrintWriter(new FileWriter(dataindno, false)); 
+                    prinddataindno.println("Tidak ada hasil");
+                    prinddataindno.close();  
+                 }
+
+                    ok = new String(Files.readAllBytes(Paths.get(oj)));
+                    akhir.setText(ok);
+
+                    //  BIGRAM - NAIVE BAYES
+                    //String bigram ="DATA/unigram_hatespeech.txt"; 
+                    //String pjhate= null; 
+                    //pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
+            }//if
+            
                   
         } catch (Exception e) {
         }
@@ -511,7 +554,7 @@ public class a extends javax.swing.JFrame {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Nimbus".contains(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -533,6 +576,7 @@ public class a extends javax.swing.JFrame {
 	String cdata_mentah= null; 
 	String cdata_mentahhate= null; 
 	String cstopword_list_tala= null; 
+	String nanas_mentah= null; 
         
 	String tala ="DATA/stopword_list_tala.txt"; 
 	String ctala= null; 
@@ -542,6 +586,7 @@ public class a extends javax.swing.JFrame {
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
             pkalnullkosong.println();
             
+            //  UNIGRAM - PREPROCESSING - NAIVE BAYES
             File proseskosong = new File("DATA/proses_input_unigram.txt"); 
             PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
             prosesnullkosong.println();
@@ -599,6 +644,7 @@ public class a extends javax.swing.JFrame {
             String[] zaqbawah = za.split("\\s+"); // bawah
             String[] zaq = za.split("\\s+", 1); // datar
             
+            
             String x ="DATA/unigram_hatespeech_tanpa_contains.txt"; 
             String xs= null; 
             xs = new String(Files.readAllBytes(Paths.get(x)));
@@ -632,6 +678,12 @@ public class a extends javax.swing.JFrame {
                 }
             }
             
+            
+            
+            
+            
+            
+             
 
         } catch (IOException ex) {
             Logger.getLogger(a.class.getName()).log(Level.SEVERE, null, ex);

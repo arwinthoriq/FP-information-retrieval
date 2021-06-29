@@ -1,9 +1,0 @@
-hatespeech
-hatespeech
-goodspeech
-hatespeech
-hatespeech
-hatespeech
-goodspeech
-goodspeech
-hatespeech
