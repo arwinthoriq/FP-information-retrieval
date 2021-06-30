@@ -285,8 +285,8 @@ public class a extends javax.swing.JFrame {
 
     private void tombol_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_simpanActionPerformed
         
-        String good ="DATA/unigram_goodspeech.txt"; 
-	String hate ="DATA/unigram_hatespeech.txt"; 
+        String good ="DATA/unigram_goodspeech_2.txt"; 
+	String hate ="DATA/unigram_hatespeech_2.txt"; 
 	String input ="DATA/input.txt"; 
 	String cgood= null; 
 	String chate= null; 
@@ -412,7 +412,7 @@ public class a extends javax.swing.JFrame {
             if(esrfwe != ewrwe){
                 naive.setVisible(true);
                 svm.setVisible(true);
-                String jgood ="DATA/unigram_goodspeech.txt"; 
+                String jgood ="DATA/unigram_goodspeech_2.txt"; 
                 String pjgood= null; 
                 pjgood = new String(Files.readAllBytes(Paths.get(jgood)));
                 String[] opjgood = pjgood.split("\\s+"); // bawah
@@ -420,7 +420,7 @@ public class a extends javax.swing.JFrame {
                 String jumlahBarisjgood  = Integer.toString(Barisjgood);
                 goods.setText("Data Goodspeech = " + jumlahBarisjgood);
 
-                String jhate ="DATA/unigram_hatespeech.txt"; 
+                String jhate ="DATA/unigram_hatespeech_2.txt"; 
                 String pjhate= null; 
                 pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
                 String[] opjhate = pjhate.split("\\s+"); // bawah
@@ -581,6 +581,21 @@ public class a extends javax.swing.JFrame {
 	String tala ="DATA/stopword_list_tala.txt"; 
 	String ctala= null; 
         try {
+            File u1inputkosong = new File("DATA/unigram_goodspeech_1.txt"); 
+            PrintWriter u1pkalnullkosong = new PrintWriter(new FileWriter(u1inputkosong, false));
+            u1pkalnullkosong.println();
+            
+            File u2inputkosong = new File("DATA/unigram_goodspeech_2.txt"); 
+            PrintWriter u2pkalnullkosong = new PrintWriter(new FileWriter(u2inputkosong, false));
+            u2pkalnullkosong.println();
+            
+            File h1inputkosong = new File("DATA/unigram_hatespeech_1.txt"); 
+            PrintWriter h1pkalnullkosong = new PrintWriter(new FileWriter(h1inputkosong, false));
+            h1pkalnullkosong.println();
+            
+            File h2inputkosong = new File("DATA/unigram_hatespeech_2.txt"); 
+            PrintWriter h2pkalnullkosong = new PrintWriter(new FileWriter(h2inputkosong, false));
+            h2pkalnullkosong.println();
             
             File inputkosong = new File("DATA/input.txt"); 
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
@@ -606,15 +621,15 @@ public class a extends javax.swing.JFrame {
             //cstopword_list_tala = new String(Files.readAllBytes(Paths.get(stopword_list_tala))); //yg eror pake stopword
             ctala = new String(Files.readAllBytes(Paths.get(tala)));
             for(String hukal : fkal) { 
-             //  boolean ikan = hukal.contains(hukal); 
-               boolean ikan = ctala.contains(hukal);  
+               //boolean ikan = ctala.contains(hukal); 
+               boolean ikan = ctala.contains(hukal); 
                if (!ikan){ 
                 File dataindonesia = new File("DATA/unigram_goodspeech_tanpa_contains.txt"); 
                 PrintWriter prindonesia = new PrintWriter(new FileWriter(dataindonesia, true)); 
                 prindonesia.println(hukal); 
-                prindonesia.close();  
-                }
-            }
+                prindonesia.close(); 
+                }//if
+            }//for
             
             // HATE-SPEECH men set file input menjadi kosong
             File inputnullhate = new File("DATA/unigram_hatespeech_tanpa_contains.txt"); 
@@ -662,8 +677,12 @@ public class a extends javax.swing.JFrame {
                     PrintWriter zaq10 = new PrintWriter(new FileWriter(zaq1, true)); 
                     zaq10.println(siputgood); 
                     zaq10.close();
-                }
-            }
+                }//if
+            }//for
+                    
+            
+                
+            
             //  hatespeech contains goodspeech = hatespeech
             File gorengnul = new File("DATA/unigram_hatespeech.txt"); 
             PrintWriter pkagorengnul = new PrintWriter(new FileWriter(gorengnul, false)); 
@@ -678,6 +697,85 @@ public class a extends javax.swing.JFrame {
                 }
             }
             
+            
+            
+            //ingin membuat bigram atau menghilangkan data yg double
+            // ..analisis lagi bandingkan kata nya menngunakan hashSet
+            
+        //CATATAN = masalahnya data yg double di hilangkan        
+                //mengambil data yg double goodspeech
+            	BufferedReader lists_good = new BufferedReader (new FileReader("DATA/unigram_goodspeech.txt"));
+		boolean hasds_good = true;
+		String lines_good;
+		Set<String> liness_good = new HashSet<String>();
+		while ((lines_good = lists_good.readLine()) != null) {
+                    if (liness_good.contains(lines_good)) {
+                        hasds_good = false;
+                        if (!hasds_good) { 
+                            File dataspanishS_good = new File("DATA/unigram_goodspeech_1.txt");
+                            PrintWriter prspanishS_good = new PrintWriter(new FileWriter(dataspanishS_good, true));
+                            prspanishS_good.println(lines_good);
+                            prspanishS_good.close();
+                        }
+                    }
+                    liness_good.add(lines_good); 
+		}
+                // membandingkan data yg double dengan data goodspeech
+                String x_good ="DATA/unigram_goodspeech.txt"; 
+                String xs_good = null; 
+                xs_good = new String(Files.readAllBytes(Paths.get(x_good)));
+                String[] xswbawah_good = xs_good.split("\\s+"); // bawah
+                String x_good1 ="DATA/unigram_goodspeech_1.txt"; 
+                String xs_good1 = null; 
+                xs_good1 = new String(Files.readAllBytes(Paths.get(x_good1)));
+                for(String siputgood_good : xswbawah_good) {   
+                boolean siputgoreng_good = xs_good1.contains(siputgood_good);   
+                    if(!siputgoreng_good){
+                        File xsw1_good = new File("DATA/unigram_goodspeech_2.txt"); 
+                        PrintWriter xsw10_good = new PrintWriter(new FileWriter(xsw1_good, true)); 
+                        xsw10_good.println(siputgood_good); 
+                        xsw10_good.close();
+                    }
+                }
+
+            
+                
+        //CATATAN = masalahnya data yg double di hilangkan        
+                //mengambil data yg double hatespeech
+            	BufferedReader lists_hate = new BufferedReader (new FileReader("DATA/unigram_hatespeech.txt"));
+		boolean hasds_hate = true;
+		String lines_hate;
+		Set<String> liness_hate = new HashSet<String>();
+		while ((lines_hate = lists_hate.readLine()) != null) {
+                    if (liness_hate.contains(lines_hate)) {
+                        hasds_hate = false;
+                        if (!hasds_hate) { 
+                            File dataspanishS_hate = new File("DATA/unigram_hatespeech_1.txt");
+                            PrintWriter prspanishS_hate = new PrintWriter(new FileWriter(dataspanishS_hate, true));
+                            prspanishS_hate.println(lines_hate);
+                            prspanishS_hate.close();
+                        }
+                    }
+                    liness_hate.add(lines_hate); 
+		}
+                // membandingkan data yg double dengan data hatespeech
+                String x_hate ="DATA/unigram_hatespeech.txt"; 
+                String xs_hate = null; 
+                xs_hate = new String(Files.readAllBytes(Paths.get(x_hate)));
+                String[] xswbawah_hate = xs_hate.split("\\s+"); // bawah
+                String x_hate1 ="DATA/unigram_hatespeech_1.txt"; 
+                String xs_hate1 = null; 
+                xs_hate1 = new String(Files.readAllBytes(Paths.get(x_hate1)));
+                for(String siputhate_hate : xswbawah_hate) {   
+                boolean siputgoreng_hate = xs_hate1.contains(siputhate_hate);   
+                    if(!siputgoreng_hate){
+                        File xsw1_hate = new File("DATA/unigram_hatespeech_2.txt"); 
+                        PrintWriter xsw10_hate = new PrintWriter(new FileWriter(xsw1_hate, true)); 
+                        xsw10_hate.println(siputhate_hate); 
+                        xsw10_hate.close();
+                    }
+                }
+		
             
             
             
