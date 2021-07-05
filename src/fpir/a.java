@@ -284,25 +284,48 @@ public class a extends javax.swing.JFrame {
     }//GEN-LAST:event_kesimpulanMouseClicked
 
     private void tombol_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_simpanActionPerformed
-        
-        String good ="DATA/unigram_goodspeech_2.txt"; 
-	String hate ="DATA/unigram_hatespeech_2.txt"; 
-	String input ="DATA/input.txt"; 
+
+        String good ="DATA/unigram_goodspeech.txt"; 
+	String hate ="DATA/unigram_hatespeech.txt"; 
+	//String input ="DATA/input.txt"; 
 	String cgood= null; 
 	String chate= null; 
-	String cinput= null; 
+	//String cinput= null; 
         
 	String oj ="DATA/hasil_unigram_akhir.txt"; 
 	String ok= null; 
+        
+        String cinput_cv= null;
+        String cinput_bn= null;
         try {
             //  UNIGRAM - NAIVE BAYES
             File inputkosong = new File("DATA/input.txt"); 
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
             pkalnullkosong.println();
             
-            File proseskosong = new File("DATA/proses_input_unigram.txt"); 
-            PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
-            prosesnullkosong.println();
+            File proseskosong1 = new File("DATA/proses_input_unigram_1.txt"); 
+            PrintWriter prosesnullkosong1 = new PrintWriter(new FileWriter(proseskosong1, false));
+            prosesnullkosong1.println();
+            
+            File proseskosong2 = new File("DATA/proses_input_unigram_2.txt"); 
+            PrintWriter prosesnullkosong2 = new PrintWriter(new FileWriter(proseskosong2, false));
+            prosesnullkosong2.println();
+            
+            File proseskosong3 = new File("DATA/proses_input_unigram_3.txt"); 
+            PrintWriter prosesnullkosong3 = new PrintWriter(new FileWriter(proseskosong3, false));
+            prosesnullkosong3.println();
+            
+            File proseskosong4 = new File("DATA/proses_input_unigram_4.txt"); 
+            PrintWriter prosesnullkosong4 = new PrintWriter(new FileWriter(proseskosong4, false));
+            prosesnullkosong4.println();
+             
+            File proseskosong5 = new File("DATA/proses_input_unigram_5.txt"); 
+            PrintWriter prosesnullkosong5 = new PrintWriter(new FileWriter(proseskosong5, false));
+            prosesnullkosong5.println();
+            
+            File proseskosong6 = new File("DATA/proses_input_unigram_6.txt"); 
+            PrintWriter prosesnullkosong6 = new PrintWriter(new FileWriter(proseskosong6, false));
+            prosesnullkosong6.println();
             
             File unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
             PrintWriter prosesnullunigram_awal = new PrintWriter(new FileWriter(unigram_awal, false));
@@ -318,91 +341,136 @@ public class a extends javax.swing.JFrame {
             
             String kalmat; 
             kalmat = form_input.getText(); 
-            File datakal9 = new File("DATA/input.txt"); 
-            PrintWriter pkal9 = new PrintWriter(new FileWriter(datakal9, true)); 
-            pkal9.println(kalmat); 
-            pkal9.close();
-            
-            cinput = new String(Files.readAllBytes(Paths.get(input)));
-            String kecil9 = cinput.toLowerCase(); 
-            String simbol9 = kecil9.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
+            String kecil9 = kalmat.toLowerCase();
+            String simbol9 = kecil9.replaceAll("[^\\p{L}\\s]", "");
             String[] fkal9 = simbol9.split("\\s+");
+            for(String kdf : fkal9){
+                File datakal9 = new File("DATA/input.txt"); 
+                PrintWriter pkal9 = new PrintWriter(new FileWriter(datakal9, true)); 
+                pkal9.println(kdf); 
+                pkal9.close();
+            }
+            String input ="DATA/input.txt"; 
+            String cinput= null; 
+            cinput = new String(Files.readAllBytes(Paths.get(input)));
+            String kecil9_i = cinput.toLowerCase(); 
+            String simbol9_i = kecil9_i.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
+            String[] fkal9_i = simbol9_i.split("\\s+");
             
             cgood = new String(Files.readAllBytes(Paths.get(good)));
+            String kecil9_cgood = cgood.toLowerCase(); 
+            String[] fkal9_cgood = kecil9_cgood.split("\\s+");
+            
             chate = new String(Files.readAllBytes(Paths.get(hate)));
-            for(String hukal9 : fkal9) { 
-                boolean sapigood = cgood.contains(hukal9); 
-                boolean sapihate = chate.contains(hukal9); 
+            String kecil9_chate = chate.toLowerCase(); 
+            String[] fkal9_chate = kecil9_chate.split("\\s+");
+            
+            for(String hukal9_g : fkal9_cgood) {    //GAK ISOOOOO
+                boolean sapigood = cinput.contains(hukal9_g); 
+                    //String hukal9_h = fkal9_chate.toString();
                 if (sapigood){ 
-                    File datasapigood = new File("DATA/proses_input_unigram.txt"); 
+                    File datasapigood = new File("DATA/proses_input_unigram_1.txt"); 
                     PrintWriter prsapigood = new PrintWriter(new FileWriter(datasapigood, true)); 
-                    prsapigood.println(hukal9); 
-                    prsapigood.close(); 
-                    // durung iso nge print
-                    String textgood = "goodspeech"; 
-                    File hasil_unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
-                    PrintWriter prtextgood = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
-                    prtextgood.println(textgood);
-                    prtextgood.close();
-                    
-                    File hasil_macan = new File("DATA/hasil_unigram_goodspeech.txt"); 
-                    PrintWriter hasil_macangood = new PrintWriter(new FileWriter(hasil_macan, true)); 
-                    hasil_macangood.println(textgood);
-                    hasil_macangood.close();
-                    
-                    //BufferedReader listigood = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
-                    //boolean hasdigood = true;
-                    //String lineigood; 
-                    //Set<String> linesigood = new HashSet<String>(); 
-                    //while ((lineigood = listigood.readLine()) != null) { 
-                    //    if (linesigood.contains(lineigood)) { 
-                    //        hasdigood = false; 
-                    //    }
-                    //    linesigood.add(lineigood);
-                    //}
-                    //if (hasdigood) { 
-                    //    File dataindgood = new File("DATA/hasil_unigram_akhir.txt"); 
-                    //    PrintWriter prinddataindgood = new PrintWriter(new FileWriter(dataindgood, false)); 
-                    //    prinddataindgood.println(textgood);
-                    //    prinddataindgood.close();  
-                    //}
-                    
-                } else if (sapihate){ 
-                    File datasapihate = new File("DATA/proses_input_unigram.txt"); 
+                    prsapigood.println(hukal9_g); 
+                    prsapigood.close();
+                }
+            } //for
+                String i2 ="DATA/proses_input_unigram_1.txt"; 
+                String ci2= null; 
+                ci2 = new String(Files.readAllBytes(Paths.get(i2)));
+                String kecil9_ci2 = ci2.toLowerCase(); 
+                String[] fkal9_ci2 = kecil9_ci2.split("\\s+");
+            for(String hukal9_ci2 : fkal9_i) {    //GAK ISOOOOO
+                boolean sapigood_ci2 = ci2.contains(hukal9_ci2); 
+                if (sapigood_ci2){ 
+                    File datasapigood_ci2 = new File("DATA/proses_input_unigram_2.txt"); 
+                    PrintWriter prsapigood_ci2 = new PrintWriter(new FileWriter(datasapigood_ci2, true)); 
+                    prsapigood_ci2.println(hukal9_ci2); 
+                    prsapigood_ci2.close();
+                }
+            } //for
+            for(String hukal9_h : fkal9_chate) { 
+                boolean sapihate = cinput.contains(hukal9_h); 
+                if (sapihate){ 
+                    File datasapihate = new File("DATA/proses_input_unigram_4.txt"); 
                     PrintWriter prsapihate = new PrintWriter(new FileWriter(datasapihate, true)); 
-                    prsapihate.println(hukal9); 
-                    prsapihate.close(); 
-                    // durung iso nge print
-                    String texthate = "hatespeech"; 
-                    File hasil_unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
-                    PrintWriter prtexthate = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
-                    prtexthate.println(texthate); 
-                    prtexthate.close();
-                    
-                    File hasil_singa = new File("DATA/hasil_unigram_hatespeech.txt"); 
-                    PrintWriter hasil_singagood = new PrintWriter(new FileWriter(hasil_singa, true)); 
-                    hasil_singagood.println(texthate);
-                    hasil_singagood.close();
-                    
-                    //BufferedReader listihate = new BufferedReader (new FileReader("DATA/hasil_unigram_awal.txt")); 
-                    //boolean hasdihate = true;
-                    //String lineihate; 
-                    //Set<String> linesihate = new HashSet<String>(); 
-                    //while ((lineihate = listihate.readLine()) != null) { 
-                    //    if (linesihate.contains(lineihate)) { 
-                    //        hasdihate = false; 
-                    //    }
-                    //    linesihate.add(lineihate);
-                    //}
-                    //if (hasdihate) { 
-                    //    File dataindhate = new File("DATA/hasil_unigram_akhir.txt"); 
-                    //    PrintWriter prinddataindhate = new PrintWriter(new FileWriter(dataindhate, false)); 
-                    //    prinddataindhate.println(texthate);
-                    //    prinddataindhate.close();  
-                    //}
+                    prsapihate.println(hukal9_h); 
+                    prsapihate.close();
+                }
+            } //for
+                String i4 ="DATA/proses_input_unigram_4.txt"; 
+                String ci4= null; 
+                ci4 = new String(Files.readAllBytes(Paths.get(i4)));
+                String kecil9_ci4 = ci4.toLowerCase(); 
+                String[] fkal9_ci4 = kecil9_ci4.split("\\s+");
+            for(String hukal9_ci4 : fkal9_i) {    //GAK ISOOOOO
+                boolean sapihate_ci4 = ci4.contains(hukal9_ci4); 
+                if (sapihate_ci4){ 
+                    File datasapihate_ci4 = new File("DATA/proses_input_unigram_5.txt"); 
+                    PrintWriter prsapihate_ci4 = new PrintWriter(new FileWriter(datasapihate_ci4, true)); 
+                    prsapihate_ci4.println(hukal9_ci4); 
+                    prsapihate_ci4.close();
                 }
             } //for
             
+                //  good
+            	BufferedReader lists_good = new BufferedReader (new FileReader("DATA/proses_input_unigram_2.txt"));
+		boolean hasds_good = true;
+		String lines_good;
+		Set<String> liness_good = new HashSet<String>();
+		while ((lines_good = lists_good.readLine()) != null) {
+                    if (liness_good.add(lines_good)) {
+                        File datasapigood2 = new File("DATA/proses_input_unigram_3.txt"); 
+                        PrintWriter prsapigood2 = new PrintWriter(new FileWriter(datasapigood2, true)); 
+                        prsapigood2.println(lines_good); 
+                        prsapigood2.close();
+                           // durung iso nge print
+                        String textgood = "goodspeech"; 
+                        File hasil_unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
+                        PrintWriter prtextgood = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
+                        prtextgood.println(textgood);
+                        prtextgood.close();
+
+                        File hasil_macan = new File("DATA/hasil_unigram_goodspeech.txt"); 
+                        PrintWriter hasil_macangood = new PrintWriter(new FileWriter(hasil_macan, true)); 
+                        hasil_macangood.println(textgood);
+                        hasil_macangood.close();
+                    }
+		}//while
+           
+                
+                 //  hate
+            	BufferedReader lists_hate = new BufferedReader (new FileReader("DATA/proses_input_unigram_5.txt"));
+		boolean hasds_hate = true;
+		String lines_hate;
+		Set<String> liness_hate = new HashSet<String>();
+		while ((lines_hate = lists_hate.readLine()) != null) {
+                    if (liness_hate.add(lines_hate)) {
+                        File datasapihate2 = new File("DATA/proses_input_unigram_6.txt"); 
+                        PrintWriter prsapihate2 = new PrintWriter(new FileWriter(datasapihate2, true)); 
+                        prsapihate2.println(lines_hate); 
+                        prsapihate2.close();
+                           // durung iso nge print
+                        String texthate = "hatespeech"; 
+                        File hasil_unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
+                        PrintWriter prtexthate = new PrintWriter(new FileWriter(hasil_unigram_awal, true)); 
+                        prtexthate.println(texthate);
+                        prtexthate.close();
+
+                        File hasil_macan = new File("DATA/hasil_unigram_hatespeech.txt"); 
+                        PrintWriter hasil_macanhate = new PrintWriter(new FileWriter(hasil_macan, true)); 
+                        hasil_macanhate.println(texthate);
+                        hasil_macanhate.close();
+                    }
+                    //liness_good.add(lines_good); 
+		}
+            
+            
+            
+
+
+
+ ///////////////////////////////    START PER-HITUNG-AN NAIVE BAYES CLASSIFIER        
             String olkjnj ="DATA/input.txt"; 
             String oijuiou = null; 
             oijuiou = new String(Files.readAllBytes(Paths.get(olkjnj)));
@@ -412,7 +480,7 @@ public class a extends javax.swing.JFrame {
             if(esrfwe != ewrwe){
                 naive.setVisible(true);
                 svm.setVisible(true);
-                String jgood ="DATA/unigram_goodspeech_2.txt"; 
+                String jgood ="DATA/unigram_goodspeech.txt"; 
                 String pjgood= null; 
                 pjgood = new String(Files.readAllBytes(Paths.get(jgood)));
                 String[] opjgood = pjgood.split("\\s+"); // bawah
@@ -420,7 +488,7 @@ public class a extends javax.swing.JFrame {
                 String jumlahBarisjgood  = Integer.toString(Barisjgood);
                 goods.setText("Data Goodspeech = " + jumlahBarisjgood);
 
-                String jhate ="DATA/unigram_hatespeech_2.txt"; 
+                String jhate ="DATA/unigram_hatespeech.txt"; 
                 String pjhate= null; 
                 pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
                 String[] opjhate = pjhate.split("\\s+"); // bawah
@@ -531,7 +599,8 @@ public class a extends javax.swing.JFrame {
                   
         } catch (Exception e) {
         }
-        
+                
+
     }//GEN-LAST:event_tombol_simpanActionPerformed
 
     private void analisis1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_analisis1MouseClicked
@@ -581,36 +650,20 @@ public class a extends javax.swing.JFrame {
 	String tala ="DATA/stopword_list_tala.txt"; 
 	String ctala= null; 
         try {
-            File u1inputkosong = new File("DATA/unigram_goodspeech_1.txt"); 
-            PrintWriter u1pkalnullkosong = new PrintWriter(new FileWriter(u1inputkosong, false));
-            u1pkalnullkosong.println();
-            
-            File u2inputkosong = new File("DATA/unigram_goodspeech_2.txt"); 
-            PrintWriter u2pkalnullkosong = new PrintWriter(new FileWriter(u2inputkosong, false));
-            u2pkalnullkosong.println();
-            
-            File h1inputkosong = new File("DATA/unigram_hatespeech_1.txt"); 
-            PrintWriter h1pkalnullkosong = new PrintWriter(new FileWriter(h1inputkosong, false));
-            h1pkalnullkosong.println();
-            
-            File h2inputkosong = new File("DATA/unigram_hatespeech_2.txt"); 
-            PrintWriter h2pkalnullkosong = new PrintWriter(new FileWriter(h2inputkosong, false));
-            h2pkalnullkosong.println();
-            
             File inputkosong = new File("DATA/input.txt"); 
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
             pkalnullkosong.println();
             
             //  UNIGRAM - PREPROCESSING - NAIVE BAYES
-            File proseskosong = new File("DATA/proses_input_unigram.txt"); 
-            PrintWriter prosesnullkosong = new PrintWriter(new FileWriter(proseskosong, false));
-            prosesnullkosong.println();
             
             File unigram_awal = new File("DATA/hasil_unigram_awal.txt"); 
             PrintWriter prosesnullunigram_awal = new PrintWriter(new FileWriter(unigram_awal, false));
             prosesnullunigram_awal.println();
             
-            // GOOD-SPEECH men set file input menjadi kosong
+         // GOOD-SPEECH men set file input menjadi kosong 1
+            File inputnull_good = new File("DATA/unigram_goodspeech.txt"); 
+            PrintWriter pkalnull_good = new PrintWriter(new FileWriter(inputnull_good, false)); 
+            pkalnull_good.println(); //print data
             File inputnull = new File("DATA/unigram_goodspeech_tanpa_contains.txt"); 
             PrintWriter pkalnull = new PrintWriter(new FileWriter(inputnull, false)); 
             pkalnull.println(); //print data
@@ -618,20 +671,28 @@ public class a extends javax.swing.JFrame {
             String kecili = cdata_mentah.toLowerCase(); 
             String simbol = kecili.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
             String[] fkal = simbol.split("\\s+"); 
-            //cstopword_list_tala = new String(Files.readAllBytes(Paths.get(stopword_list_tala))); //yg eror pake stopword
             ctala = new String(Files.readAllBytes(Paths.get(tala)));
             for(String hukal : fkal) { 
-               //boolean ikan = ctala.contains(hukal); 
                boolean ikan = ctala.contains(hukal); 
                if (!ikan){ 
                 File dataindonesia = new File("DATA/unigram_goodspeech_tanpa_contains.txt"); 
                 PrintWriter prindonesia = new PrintWriter(new FileWriter(dataindonesia, true)); 
                 prindonesia.println(hukal); 
-                prindonesia.close(); 
+                prindonesia.close();
+                    //nanti hapus
+                    //File ugood1 = new File("DATA/unigram_goodspeech.txt"); 
+                    //PrintWriter prugood1 = new PrintWriter(new FileWriter(ugood1, true)); 
+                    //prugood1.println(hukal); 
+                    //prugood1.close();
                 }//if
             }//for
             
+            
+ ////////////////////////////////////////////////////////////////////////////////////           
             // HATE-SPEECH men set file input menjadi kosong
+            File inputnull_hate = new File("DATA/unigram_hatespeech.txt"); 
+            PrintWriter pkalnull_hate = new PrintWriter(new FileWriter(inputnull_hate, false)); 
+            pkalnull_hate.println(); //print data
             File inputnullhate = new File("DATA/unigram_hatespeech_tanpa_contains.txt"); 
             PrintWriter pkalnullhate = new PrintWriter(new FileWriter(inputnullhate, false)); 
             pkalnullhate.println(); //print data
@@ -643,15 +704,21 @@ public class a extends javax.swing.JFrame {
             ctala = new String(Files.readAllBytes(Paths.get(tala)));
             for(String hukalhate : fkalhate) { 
                boolean ikanhate = ctala.contains(hukalhate); 
-               if (!ikanhate){ 
-                File datahate = new File("DATA/unigram_hatespeech_tanpa_contains.txt"); 
-                PrintWriter prhate = new PrintWriter(new FileWriter(datahate, true)); 
-                prhate.println(hukalhate); 
-                prhate.close(); 
+                if (!ikanhate){ 
+                    File datahate = new File("DATA/unigram_hatespeech_tanpa_contains.txt"); 
+                    PrintWriter prhate = new PrintWriter(new FileWriter(datahate, true)); 
+                    prhate.println(hukalhate); 
+                    prhate.close(); 
+                    //nanti hapus
+                    //File uhate1 = new File("DATA/unigram_hatespeech.txt"); 
+                    //PrintWriter pruhate1 = new PrintWriter(new FileWriter(uhate1, true)); 
+                    //pruhate1.println(hukalhate); 
+                    //pruhate1.close();
                 }
             }
             
-            //  MENGHAPUS DATA YANG SAMA ANTARA unigram_goodspeech.txt DENGAN unigram_hatespeech.txt
+            //  MENGHAPUS DATA YANG SAMA ANTARA 
+            //  unigram_goodspeech_tanpa_contains.txt DENGAN unigram_hatespeech_tanpa_contains.txt
             
             String z ="DATA/unigram_goodspeech_tanpa_contains.txt"; 
             String za= null; 
@@ -659,14 +726,14 @@ public class a extends javax.swing.JFrame {
             String[] zaqbawah = za.split("\\s+"); // bawah
             String[] zaq = za.split("\\s+", 1); // datar
             
-            
             String x ="DATA/unigram_hatespeech_tanpa_contains.txt"; 
             String xs= null; 
             xs = new String(Files.readAllBytes(Paths.get(x)));
             String[] xswbawah = xs.split("\\s+"); // bawah
             String[] xsw = xs.split("\\s+", 1);//datar
-            
+                     
             //  goodspeech contains hatespeech = goospeech
+            //yg dipake yg false
             File bakarnul = new File("DATA/unigram_goodspeech.txt"); 
             PrintWriter pkabakarnul = new PrintWriter(new FileWriter(bakarnul, false)); 
             pkabakarnul.println(); 
@@ -679,14 +746,11 @@ public class a extends javax.swing.JFrame {
                     zaq10.close();
                 }//if
             }//for
-                    
-            
-                
-            
-            //  hatespeech contains goodspeech = hatespeech
+            //hatespeech contains goodspeech = hatespeech
+            //yg dipake yg false
             File gorengnul = new File("DATA/unigram_hatespeech.txt"); 
             PrintWriter pkagorengnul = new PrintWriter(new FileWriter(gorengnul, false)); 
-            pkagorengnul.println(); 
+            pkagorengnul.println();
             for(String siputhate : xswbawah) {   // string : split
             boolean siputgoreng = za.contains(siputhate);   // bawah contains datar
                 if(!siputgoreng){
@@ -694,91 +758,16 @@ public class a extends javax.swing.JFrame {
                     PrintWriter xsw10 = new PrintWriter(new FileWriter(xsw1, true)); 
                     xsw10.println(siputhate); 
                     xsw10.close();
-                }
-            }
+                }//if
+            }//for
             
+/////////////////////////////////////////////////////////
             
             
             //ingin membuat bigram atau menghilangkan data yg double
             // ..analisis lagi bandingkan kata nya menngunakan hashSet
             
-        //CATATAN = masalahnya data yg double di hilangkan        
-                //mengambil data yg double goodspeech
-            	BufferedReader lists_good = new BufferedReader (new FileReader("DATA/unigram_goodspeech.txt"));
-		boolean hasds_good = true;
-		String lines_good;
-		Set<String> liness_good = new HashSet<String>();
-		while ((lines_good = lists_good.readLine()) != null) {
-                    if (liness_good.contains(lines_good)) {
-                        hasds_good = false;
-                        if (!hasds_good) { 
-                            File dataspanishS_good = new File("DATA/unigram_goodspeech_1.txt");
-                            PrintWriter prspanishS_good = new PrintWriter(new FileWriter(dataspanishS_good, true));
-                            prspanishS_good.println(lines_good);
-                            prspanishS_good.close();
-                        }
-                    }
-                    liness_good.add(lines_good); 
-		}
-                // membandingkan data yg double dengan data goodspeech
-                String x_good ="DATA/unigram_goodspeech.txt"; 
-                String xs_good = null; 
-                xs_good = new String(Files.readAllBytes(Paths.get(x_good)));
-                String[] xswbawah_good = xs_good.split("\\s+"); // bawah
-                String x_good1 ="DATA/unigram_goodspeech_1.txt"; 
-                String xs_good1 = null; 
-                xs_good1 = new String(Files.readAllBytes(Paths.get(x_good1)));
-                for(String siputgood_good : xswbawah_good) {   
-                boolean siputgoreng_good = xs_good1.contains(siputgood_good);   
-                    if(!siputgoreng_good){
-                        File xsw1_good = new File("DATA/unigram_goodspeech_2.txt"); 
-                        PrintWriter xsw10_good = new PrintWriter(new FileWriter(xsw1_good, true)); 
-                        xsw10_good.println(siputgood_good); 
-                        xsw10_good.close();
-                    }
-                }
-
-            
-                
-        //CATATAN = masalahnya data yg double di hilangkan        
-                //mengambil data yg double hatespeech
-            	BufferedReader lists_hate = new BufferedReader (new FileReader("DATA/unigram_hatespeech.txt"));
-		boolean hasds_hate = true;
-		String lines_hate;
-		Set<String> liness_hate = new HashSet<String>();
-		while ((lines_hate = lists_hate.readLine()) != null) {
-                    if (liness_hate.contains(lines_hate)) {
-                        hasds_hate = false;
-                        if (!hasds_hate) { 
-                            File dataspanishS_hate = new File("DATA/unigram_hatespeech_1.txt");
-                            PrintWriter prspanishS_hate = new PrintWriter(new FileWriter(dataspanishS_hate, true));
-                            prspanishS_hate.println(lines_hate);
-                            prspanishS_hate.close();
-                        }
-                    }
-                    liness_hate.add(lines_hate); 
-		}
-                // membandingkan data yg double dengan data hatespeech
-                String x_hate ="DATA/unigram_hatespeech.txt"; 
-                String xs_hate = null; 
-                xs_hate = new String(Files.readAllBytes(Paths.get(x_hate)));
-                String[] xswbawah_hate = xs_hate.split("\\s+"); // bawah
-                String x_hate1 ="DATA/unigram_hatespeech_1.txt"; 
-                String xs_hate1 = null; 
-                xs_hate1 = new String(Files.readAllBytes(Paths.get(x_hate1)));
-                for(String siputhate_hate : xswbawah_hate) {   
-                boolean siputgoreng_hate = xs_hate1.contains(siputhate_hate);   
-                    if(!siputgoreng_hate){
-                        File xsw1_hate = new File("DATA/unigram_hatespeech_2.txt"); 
-                        PrintWriter xsw10_hate = new PrintWriter(new FileWriter(xsw1_hate, true)); 
-                        xsw10_hate.println(siputhate_hate); 
-                        xsw10_hate.close();
-                    }
-                }
-		
-            
-            
-            
+        
             
             
              
