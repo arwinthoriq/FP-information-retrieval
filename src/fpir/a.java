@@ -762,15 +762,113 @@ public class a extends javax.swing.JFrame {
             }//for
             
 /////////////////////////////////////////////////////////
-            
-            
-            //ingin membuat bigram atau menghilangkan data yg double
-            // ..analisis lagi bandingkan kata nya menngunakan hashSet
-            
-        
-            
-            
-             
+                //  BIGRAM
+            //1
+            File binull = new File("DATA_BIGRAM/bigram_goodspeech_1.txt"); 
+            PrintWriter pbinull = new PrintWriter(new FileWriter(binull, false)); 
+            pbinull.println();
+            String be ="DATA/unigram_goodspeech.txt"; 
+            String bes= null; 
+            bes = new String(Files.readAllBytes(Paths.get(be)));
+            String[] bibawah = bes.split("\\s+"); // bawah
+            for(String bigood : bibawah) {   // string : split
+                    File bi = new File("DATA_BIGRAM/bigram_goodspeech_1.txt"); 
+                    PrintWriter pbi = new PrintWriter(new FileWriter(bi, true)); 
+                    pbi.println(bigood + "\n" + bigood);
+                    pbi.close();
+            }
+            //2
+                File bbinull02 = new File("DATA_BIGRAM/bigram_goodspeech_2.txt"); 
+                PrintWriter bpbinull02 = new PrintWriter(new FileWriter(bbinull02, false)); 
+                bpbinull02.println();
+                BufferedReader reader1 = new BufferedReader(new FileReader("DATA_BIGRAM/bigram_goodspeech_1.txt"));
+                String satu = reader1.readLine();
+                File bi00 = new File("DATA_BIGRAM/bigram_goodspeech_2.txt"); 
+                PrintWriter pbi00 = new PrintWriter(new FileWriter(bi00, true)); 
+                pbi00.println(satu);
+                pbi00.close();
+            //3
+            File bbinull0 = new File("DATA_BIGRAM/bigram_goodspeech_3.txt"); 
+            PrintWriter bpbinull0 = new PrintWriter(new FileWriter(bbinull0, false)); 
+            bpbinull0.println();
+            String be1 ="DATA_BIGRAM/bigram_goodspeech_1.txt"; 
+            String bes1= null; 
+            bes1 = new String(Files.readAllBytes(Paths.get(be1)));
+            String kecilibes = bes1.toLowerCase(); 
+            String[] bsplit = kecilibes.split("\\s+"); // bawah
+            String be10 ="DATA_BIGRAM/bigram_goodspeech_2.txt"; 
+            String bes10= null; 
+            bes10 = new String(Files.readAllBytes(Paths.get(be10)));
+            for(String yab : bsplit){
+                boolean ajax = bes10.contains(bes1);
+                if(!ajax){
+                         File bi0 = new File("DATA_BIGRAM/bigram_goodspeech_3.txt"); 
+                         PrintWriter pbi0 = new PrintWriter(new FileWriter(bi0, true)); 
+                         pbi0.println(bes1);
+                         pbi0.close();
+                }
+            }
+            //4
+            File bbinull = new File("DATA_BIGRAM/bigram_goodspeech_4.txt"); 
+            PrintWriter bpbinull = new PrintWriter(new FileWriter(bbinull, false)); 
+            bpbinull.println();
+            BufferedReader reader = new BufferedReader(new FileReader("DATA_BIGRAM/bigram_goodspeech_3.txt"));
+            String currentLine;
+            String[] a;
+            String[] b;
+            //String res;
+            while((currentLine = reader.readLine()) != null) {
+                a = currentLine.split(",");
+                b = reader.readLine().split(",");
+                //res = a[0] + " " + b[0];
+                //res = a[0] + " " + b[0] + "\n";
+                //writer.write(res);
+                File bi2 = new File("DATA_BIGRAM/bigram_goodspeech_4.txt"); 
+                PrintWriter pbi2 = new PrintWriter(new FileWriter(bi2, true)); 
+                pbi2.println(a[0] + " " + b[0]);
+                pbi2.close();
+            }//while
+            //writer.close();
+            //reader.close();
+                
+                //  BIGRAM 2 gagal
+               // BufferedWriter writer = new BufferedWriter(new FileWriter("DATA_BIGRAM/bigram_3.txt"));
+                //String str = "i am sample string and will be tokenized";
+                //ArrayList<String> bigrams = new ArrayList<String>();
+                //StringTokenizer itr = new StringTokenizer(str);
+                //if(itr.countTokens() > 1){
+                    //writer.write(itr.countTokens());
+                    //File b3 = new File("DATA_BIGRAM/bigram_3.txt"); 
+                    //PrintWriter pb3 = new PrintWriter(new FileWriter(b3, true)); 
+                    //pb3.println(itr.countTokens()); 
+                    //pb3.close();
+                    //String s1 = "";
+                    //String s2 = "";
+                    //String s3 = "";
+                    //while(itr.hasMoreTokens()){
+                        //if(!s1.isEmpty()){
+                            //s1 = itr.nextToken();
+                            //s2 = itr.nextToken();
+                            //s3 = s1 + " " + s2;
+                            //bigrams.add(s3);
+                                //File b4 = new File("DATA_BIGRAM/bigram_4.txt"); 
+                                //PrintWriter pb4 = new PrintWriter(new FileWriter(b4, true)); 
+                                //pb4.println(bigrams.add(s3));
+                            //s1 = s2;
+                            //s2 = "";
+                        //}//if
+                    //}//while
+                //}else{
+                    //int i = 0;
+                    //while(i < bigrams.size()){
+                        //writer.write(bigrams.get(i));
+                        //File b5 = new File("DATA_BIGRAM/bigram_5.txt"); 
+                        //PrintWriter pb5 = new PrintWriter(new FileWriter(b5, true)); 
+                        //pb5.println(bigrams.get(i));
+                    //}
+                    //i++;
+                //}
+                
 
         } catch (IOException ex) {
             Logger.getLogger(a.class.getName()).log(Level.SEVERE, null, ex);
