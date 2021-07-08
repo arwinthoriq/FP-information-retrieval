@@ -59,13 +59,11 @@ public class a extends javax.swing.JFrame {
     private void initComponents() {
 
         sidebar = new javax.swing.JPanel();
-        kesimpulan = new javax.swing.JLabel();
         analisis1 = new javax.swing.JLabel();
         navbar = new javax.swing.JPanel();
         judul = new javax.swing.JLabel();
         form_input = new javax.swing.JTextField();
         tombol_simpan = new javax.swing.JButton();
-        form_kesimpulan = new javax.swing.JTextField();
         akhir = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         goods = new javax.swing.JLabel();
@@ -78,7 +76,17 @@ public class a extends javax.swing.JFrame {
         naive = new javax.swing.JLabel();
         hasil_ugood = new javax.swing.JLabel();
         hasil_uhate = new javax.swing.JLabel();
-        svm = new javax.swing.JLabel();
+        bigram = new javax.swing.JLabel();
+        goods1 = new javax.swing.JLabel();
+        macan1 = new javax.swing.JLabel();
+        singa1 = new javax.swing.JLabel();
+        hates1 = new javax.swing.JLabel();
+        goodhates1 = new javax.swing.JLabel();
+        totalgood1 = new javax.swing.JLabel();
+        totalhate1 = new javax.swing.JLabel();
+        hasil_ugood1 = new javax.swing.JLabel();
+        hasil_uhate1 = new javax.swing.JLabel();
+        unigram = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(875, 544));
@@ -86,17 +94,6 @@ public class a extends javax.swing.JFrame {
 
         sidebar.setBackground(new java.awt.Color(0, 102, 102));
         sidebar.setPreferredSize(new java.awt.Dimension(175, 166));
-
-        kesimpulan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        kesimpulan.setForeground(new java.awt.Color(255, 255, 255));
-        kesimpulan.setText("Kesimpulan");
-        kesimpulan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        kesimpulan.setPreferredSize(new java.awt.Dimension(50, 17));
-        kesimpulan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                kesimpulanMouseClicked(evt);
-            }
-        });
 
         analisis1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         analisis1.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,19 +112,15 @@ public class a extends javax.swing.JFrame {
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(analisis1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(analisis1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         sidebarLayout.setVerticalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(analisis1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(470, Short.MAX_VALUE))
+                .addContainerGap(551, Short.MAX_VALUE))
         );
 
         navbar.setBackground(new java.awt.Color(0, 102, 102));
@@ -142,7 +135,7 @@ public class a extends javax.swing.JFrame {
         navbarLayout.setHorizontalGroup(
             navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navbarLayout.createSequentialGroup()
-                .addContainerGap(217, Short.MAX_VALUE)
+                .addContainerGap(226, Short.MAX_VALUE)
                 .addComponent(judul)
                 .addGap(272, 272, 272))
         );
@@ -158,8 +151,6 @@ public class a extends javax.swing.JFrame {
                 tombol_simpanActionPerformed(evt);
             }
         });
-
-        form_kesimpulan.setEditable(false);
 
         akhir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
@@ -186,8 +177,31 @@ public class a extends javax.swing.JFrame {
 
         hasil_uhate.setText(" ");
 
-        svm.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        svm.setText("Support Vector Machine");
+        bigram.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        bigram.setText("bigram");
+
+        goods1.setText(" ");
+
+        macan1.setText("  ");
+
+        singa1.setText("  ");
+
+        hates1.setText(" ");
+        hates1.setPreferredSize(new java.awt.Dimension(49, 14));
+
+        goodhates1.setText(" ");
+        goodhates1.setPreferredSize(new java.awt.Dimension(49, 14));
+
+        totalgood1.setText(" ");
+
+        totalhate1.setText(" ");
+
+        hasil_ugood1.setText("  ");
+
+        hasil_uhate1.setText(" ");
+
+        unigram.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        unigram.setText("unigram");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,29 +217,44 @@ public class a extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(tombol_simpan)
                                     .addGap(128, 128, 128)
-                                    .addComponent(akhir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(form_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(totalhate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(totalgood, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(singa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(goodhates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                                    .addComponent(hates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(goods, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(macan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(hasil_uhate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(hasil_ugood, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(akhir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(9, 9, 9))
+                                .addComponent(form_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(totalhate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(totalgood, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(singa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(goodhates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                        .addComponent(hates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(goods, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(macan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(hasil_uhate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hasil_ugood, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(totalhate1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(totalgood1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(singa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(goodhates1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(hates1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(goods1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(macan1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(hasil_uhate1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hasil_ugood1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(naive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(svm)
-                        .addGap(72, 72, 72))))
-            .addComponent(navbar, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+                        .addGap(89, 89, 89)
+                        .addComponent(unigram, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(250, 250, 250)
+                        .addComponent(bigram, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(219, 219, 219)
+                        .addComponent(naive)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(navbar, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +264,7 @@ public class a extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(form_input, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -243,45 +272,57 @@ public class a extends javax.swing.JFrame {
                             .addComponent(tombol_simpan)
                             .addComponent(akhir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(naive, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(svm))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bigram))
+                            .addComponent(unigram))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(goods, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(goodhates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(macan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(singa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(totalgood)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hasil_ugood, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(totalhate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hasil_uhate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(form_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(goods, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(goodhates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(macan)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(singa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalgood)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hasil_ugood, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalhate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hasil_uhate))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(goods1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hates1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(goodhates1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(macan1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(singa1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalgood1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hasil_ugood1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalhate1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hasil_uhate1)))
+                        .addGap(18, 18, 18)
+                        .addComponent(naive, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void kesimpulanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kesimpulanMouseClicked
-        // TODO add your handling code here:
-        form_kesimpulan.setVisible(true);
-        form_input.setVisible(true);
-        //form_input.setEditable(false);
-        tombol_simpan.setVisible(false);
-
-    }//GEN-LAST:event_kesimpulanMouseClicked
 
     private void tombol_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombol_simpanActionPerformed
 
@@ -297,11 +338,25 @@ public class a extends javax.swing.JFrame {
         
         String cinput_cv= null;
         String cinput_bn= null;
+        
+        String goodbigram ="DATA_BIGRAM/bigram_goodspeech.txt"; 
+	String hatebigram ="DATA_BIGRAM/bigram_hatespeech.txt"; 
+	String cgoodbigram= null; 
+	String chatebigram= null; 
+        String ojbigram ="DATA_BIGRAM/hasil_bigram_akhir.txt"; 
+	String okbigram= null; 
+        
+        String cinput_cvbigram= null;
+        String cinput_bnbigram= null;
         try {
-            //  UNIGRAM - NAIVE BAYES
+////////////////////////////////////  UNIGRAM - NAIVE BAYES     //////////////////////////////////////
             File inputkosong = new File("DATA/input.txt"); 
             PrintWriter pkalnullkosong = new PrintWriter(new FileWriter(inputkosong, false));
             pkalnullkosong.println();
+            
+            File inputkosong_u_g = new File("DATA/angka_unigram.txt"); 
+            PrintWriter pkalnullkosong_u_g = new PrintWriter(new FileWriter(inputkosong_u_g, false));
+            pkalnullkosong_u_g.println();
             
             File proseskosong1 = new File("DATA/proses_input_unigram_1.txt"); 
             PrintWriter prosesnullkosong1 = new PrintWriter(new FileWriter(proseskosong1, false));
@@ -478,8 +533,9 @@ public class a extends javax.swing.JFrame {
             int esrfwe  = ukjmyhtrf.length; 
             int ewrwe = 0;
             if(esrfwe != ewrwe){
+                unigram.setVisible(true);
                 naive.setVisible(true);
-                svm.setVisible(true);
+                bigram.setVisible(true);
                 String jgood ="DATA/unigram_goodspeech.txt"; 
                 String pjgood= null; 
                 pjgood = new String(Files.readAllBytes(Paths.get(jgood)));
@@ -586,17 +642,397 @@ public class a extends javax.swing.JFrame {
                     prinddataindno.println("Tidak ada hasil");
                     prinddataindno.close();  
                  }
+                 double u_g = nbcgood3 + nbchate3;
+                 File u_g_file = new File("DATA/angka_unigram.txt"); 
+                    PrintWriter pr_u_g = new PrintWriter(new FileWriter(u_g_file, false)); 
+                    pr_u_g.println(u_g);
+                    pr_u_g.close();  
+                    //ok = new String(Files.readAllBytes(Paths.get(oj)));
+                    //akhir.setText(ok);
+                    
 
-                    ok = new String(Files.readAllBytes(Paths.get(oj)));
-                    akhir.setText(ok);
-
-                    //  BIGRAM - NAIVE BAYES
-                    //String bigram ="DATA/unigram_hatespeech.txt"; 
-                    //String pjhate= null; 
-                    //pjhate = new String(Files.readAllBytes(Paths.get(jhate)));
             }//if
             
-                  
+            
+            
+            
+            
+////////////////////////////////////     BIGRAM - NAIVE BAYES     //////////////////////////////////////            
+///////////////////////////////////                              /////////////////////////////////////// 
+     
+            File proseskosong1bigram = new File("DATA_BIGRAM/proses_input_bigram_1.txt"); 
+            PrintWriter prosesnullkosong1bigram = new PrintWriter(new FileWriter(proseskosong1bigram, false));
+            prosesnullkosong1bigram.println();
+            
+            File proseskosong2bigram = new File("DATA_BIGRAM/proses_input_bigram_2.txt"); 
+            PrintWriter prosesnullkosong2bigram = new PrintWriter(new FileWriter(proseskosong2bigram, false));
+            prosesnullkosong2bigram.println();
+            
+            File proseskosong3bigram = new File("DATA_BIGRAM/proses_input_bigram_3.txt"); 
+            PrintWriter prosesnullkosong3bigram = new PrintWriter(new FileWriter(proseskosong3bigram, false));
+            prosesnullkosong3bigram.println();
+            
+            File proseskosong4bigram = new File("DATA_BIGRAM/proses_input_bigram_4.txt"); 
+            PrintWriter prosesnullkosong4bigram = new PrintWriter(new FileWriter(proseskosong4bigram, false));
+            prosesnullkosong4bigram.println();
+             
+            File proseskosong5bigram = new File("DATA_BIGRAM/proses_input_bigram_5.txt"); 
+            PrintWriter prosesnullkosong5bigram = new PrintWriter(new FileWriter(proseskosong5bigram, false));
+            prosesnullkosong5bigram.println();
+            
+            File proseskosong6bigram = new File("DATA_BIGRAM/proses_input_bigram_6.txt"); 
+            PrintWriter prosesnullkosong6bigram = new PrintWriter(new FileWriter(proseskosong6bigram, false));
+            prosesnullkosong6bigram.println();
+            
+            File unigram_awalbigram = new File("DATA_BIGRAM/hasil_bigram_awal.txt"); 
+            PrintWriter prosesnullunigram_awalbigram = new PrintWriter(new FileWriter(unigram_awalbigram, false));
+            prosesnullunigram_awalbigram.println();
+            
+            File hasil_unigram_goodspeechbigram = new File("DATA_BIGRAM/hasil_bigram_goodspeech.txt"); 
+            PrintWriter prhasil_unigram_goodspeechbigram = new PrintWriter(new FileWriter(hasil_unigram_goodspeechbigram, false));
+            prhasil_unigram_goodspeechbigram.println();
+            
+            File hasil_unigram_hatespeechbigram = new File("DATA_BIGRAM/hasil_bigram_hatespeech.txt"); 
+            PrintWriter prhasil_unigram_hatespeechbigram = new PrintWriter(new FileWriter(hasil_unigram_hatespeechbigram, false));
+            prhasil_unigram_hatespeechbigram.println();
+            
+
+            File binull = new File("DATA_BIGRAM/input_bigram_1.txt"); 
+            PrintWriter pbinull = new PrintWriter(new FileWriter(binull, false)); 
+            pbinull.println();
+            File bbinull02 = new File("DATA_BIGRAM/input_bigram_2.txt"); 
+            PrintWriter bpbinull02 = new PrintWriter(new FileWriter(bbinull02, false)); 
+            bpbinull02.println();
+            File bbinull0 = new File("DATA_BIGRAM/input_bigram_3.txt"); 
+            PrintWriter bpbinull0 = new PrintWriter(new FileWriter(bbinull0, false)); 
+            bpbinull0.println();
+            File bbinull = new File("DATA_BIGRAM/input_bigram_4.txt"); 
+            PrintWriter bpbinull = new PrintWriter(new FileWriter(bbinull, false)); 
+            bpbinull.println();
+            File bbinull05 = new File("DATA_BIGRAM/input_bigram.txt"); 
+            PrintWriter bpbinull05 = new PrintWriter(new FileWriter(bbinull05, false)); 
+            bpbinull05.println();
+            
+            //1
+            BufferedReader reader1 = new BufferedReader(new FileReader("DATA/input.txt"));
+            String satu = reader1.readLine();
+            File bi00 = new File("DATA_BIGRAM/input_bigram_1.txt"); 
+            PrintWriter pbi00 = new PrintWriter(new FileWriter(bi00, true)); 
+            pbi00.println(satu);
+            pbi00.close();
+            
+            //2
+            String be1 ="DATA_BIGRAM/input_bigram_1.txt"; 
+            String bes1= null; 
+            bes1 = new String(Files.readAllBytes(Paths.get(be1)));
+            for(String yab : fkal9_i){
+                boolean ajax = bes1.contains(yab);
+                if(!ajax){
+                    File bi0 = new File("DATA_BIGRAM/input_bigram_2.txt"); 
+                    PrintWriter pbi0 = new PrintWriter(new FileWriter(bi0, true)); 
+                    pbi0.println(yab);
+                    pbi0.close();
+                }
+            }
+            
+            //3
+            String be12 ="DATA_BIGRAM/input_bigram_2.txt"; 
+            String bes12= null; 
+            bes12 = new String(Files.readAllBytes(Paths.get(be12)));
+            String[] besbawah2 = bes12.split("\\s+"); // bawah
+            for(String bigood2 : besbawah2) {
+                        File bi2 = new File("DATA_BIGRAM/input_bigram_3.txt"); 
+                        PrintWriter pbi2 = new PrintWriter(new FileWriter(bi2, true)); 
+                        pbi2.println(bigood2);
+                        pbi2.println(bigood2);
+                        pbi2.close();
+            }
+            
+            //4
+            String be124 ="DATA_BIGRAM/input_bigram_1.txt"; 
+            String bes124= null; 
+            bes124 = new String(Files.readAllBytes(Paths.get(be124)));
+            String be1243 ="DATA_BIGRAM/input_bigram_3.txt"; 
+            String bes1243= null; 
+            bes1243 = new String(Files.readAllBytes(Paths.get(be1243)));
+            File bi004 = new File("DATA_BIGRAM/input_bigram_4.txt"); 
+            PrintWriter pbi004 = new PrintWriter(new FileWriter(bi004, true)); 
+            pbi004.print(bes124);
+            pbi004.println(bes1243);
+            pbi004.close();
+            
+            //5
+            BufferedReader reader = new BufferedReader(new FileReader("DATA_BIGRAM/input_bigram_4.txt"));
+            String currentLine;
+            String[] a;
+            String[] b;
+            while((currentLine = reader.readLine()) != null) {
+                a = currentLine.split(",");
+                b = reader.readLine().split(",");
+                File bi2 = new File("DATA_BIGRAM/input_bigram.txt"); 
+                PrintWriter pbi2 = new PrintWriter(new FileWriter(bi2, true)); 
+                //pbi2.println(a[0] + " " + b[0]); //di gabung tanpa spasi
+                pbi2.println(a[0] + b[0]);
+                pbi2.close();
+            }//while
+            
+            String inputbigram ="DATA_BIGRAM/input_bigram.txt"; 
+            String cinputbigram= null; 
+            cinputbigram = new String(Files.readAllBytes(Paths.get(inputbigram)));
+            String kecil9_ibigram = cinputbigram.toLowerCase(); 
+            String[] fkal9_ibigram = kecil9_ibigram.split("\\s+");
+            //String[] fkal9_ibigram = new String[] {kecil9_ibigram};
+            
+            cgoodbigram = new String(Files.readAllBytes(Paths.get(goodbigram)));
+            String kecil9_cgoodbigram = cgoodbigram.toLowerCase(); 
+            String[] fkal9_cgoodbigram = kecil9_cgoodbigram.split("\\s+");
+            
+            chatebigram = new String(Files.readAllBytes(Paths.get(hatebigram)));
+            String kecil9_chatebigram = chatebigram.toLowerCase(); 
+            String[] fkal9_chatebigram = kecil9_chatebigram.split("\\s+");
+            
+            for(String hukal9_gbigram : fkal9_cgoodbigram) {    //GAK ISOOOOO
+                boolean sapigoodbigram = cinputbigram.contains(hukal9_gbigram);
+                if (sapigoodbigram){ 
+                    File datasapigoodbigram = new File("DATA_BIGRAM/proses_input_bigram_1.txt"); 
+                    PrintWriter prsapigoodbigram = new PrintWriter(new FileWriter(datasapigoodbigram, true)); 
+                    prsapigoodbigram.println(hukal9_gbigram); 
+                    prsapigoodbigram.close();
+                }
+            }
+                String i2bigram ="DATA_BIGRAM/proses_input_bigram_1.txt"; 
+                String ci2bigram= null; 
+                ci2bigram = new String(Files.readAllBytes(Paths.get(i2bigram)));
+                String kecil9_ci2bigram = ci2bigram.toLowerCase(); 
+                String[] fkal9_ci2bigram = kecil9_ci2bigram.split("\\s+");
+            for(String hukal9_ci2bigram : fkal9_ibigram) {    //GAK ISOOOOO
+                boolean sapigood_ci2bigram = ci2bigram.contains(hukal9_ci2bigram); 
+                if (sapigood_ci2bigram){ 
+                    File datasapigood_ci2bigram = new File("DATA_BIGRAM/proses_input_bigram_2.txt"); 
+                    PrintWriter prsapigood_ci2bigram = new PrintWriter(new FileWriter(datasapigood_ci2bigram, true)); 
+                    prsapigood_ci2bigram.println(hukal9_ci2bigram); 
+                    prsapigood_ci2bigram.close();
+                }
+            } 
+            for(String hukal9_hbigram : fkal9_chatebigram) { 
+                boolean sapihatebigram = cinputbigram.contains(hukal9_hbigram); 
+                if (sapihatebigram){ 
+                    File datasapihatebigram = new File("DATA_BIGRAM/proses_input_bigram_4.txt"); 
+                    PrintWriter prsapihatebigram = new PrintWriter(new FileWriter(datasapihatebigram, true)); 
+                    prsapihatebigram.println(hukal9_hbigram); 
+                    prsapihatebigram.close();
+                }
+            } //for
+                String i4bigram ="DATA_BIGRAM/proses_input_bigram_4.txt"; 
+                String ci4bigram= null; 
+                ci4bigram = new String(Files.readAllBytes(Paths.get(i4bigram)));
+                String kecil9_ci4bigram = ci4bigram.toLowerCase(); 
+                String[] fkal9_ci4bigram = kecil9_ci4bigram.split("\\s+");
+            for(String hukal9_ci4bigram : fkal9_ibigram) {    //GAK ISOOOOO
+                boolean sapihate_ci4bigram = ci4bigram.contains(hukal9_ci4bigram); 
+                if (sapihate_ci4bigram){ 
+                    File datasapihate_ci4bigram = new File("DATA_BIGRAM/proses_input_bigram_5.txt"); 
+                    PrintWriter prsapihate_ci4bigram = new PrintWriter(new FileWriter(datasapihate_ci4bigram, true)); 
+                    prsapihate_ci4bigram.println(hukal9_ci4bigram); 
+                    prsapihate_ci4bigram.close();
+                }
+            } 
+            
+                //  good
+            	BufferedReader lists_goodbigram = new BufferedReader (new FileReader("DATA_BIGRAM/proses_input_bigram_2.txt"));
+		boolean hasds_goodbigram = true;
+		String lines_goodbigram;
+		Set<String> liness_goodbigram = new HashSet<String>();
+		while ((lines_goodbigram = lists_goodbigram.readLine()) != null) {
+                    if (liness_goodbigram.add(lines_goodbigram)) {
+                        File datasapigood2bigram = new File("DATA_BIGRAM/proses_input_bigram_3.txt"); 
+                        PrintWriter prsapigood2bigram = new PrintWriter(new FileWriter(datasapigood2bigram, true)); 
+                        prsapigood2bigram.println(lines_goodbigram); 
+                        prsapigood2bigram.close();
+                           // durung iso nge print
+                        String textgoodbigram = "goodspeech"; 
+                        File hasil_unigram_awalbigram = new File("DATA_BIGRAM/hasil_bigram_awal.txt"); 
+                        PrintWriter prtextgoodbigram = new PrintWriter(new FileWriter(hasil_unigram_awalbigram, true)); 
+                        prtextgoodbigram.println(textgoodbigram);
+                        prtextgoodbigram.close();
+
+                        File hasil_macanbigram = new File("DATA_BIGRAM/hasil_bigram_goodspeech.txt"); 
+                        PrintWriter hasil_macangoodbigram = new PrintWriter(new FileWriter(hasil_macanbigram, true)); 
+                        hasil_macangoodbigram.println(textgoodbigram);
+                        hasil_macangoodbigram.close();
+                    }
+		}//while
+           
+                
+                 //  hate
+            	BufferedReader lists_hatebigram = new BufferedReader (new FileReader("DATA_BIGRAM/proses_input_bigram_5.txt"));
+		boolean hasds_hatebigram = true;
+		String lines_hatebigram;
+		Set<String> liness_hatebigram = new HashSet<String>();
+		while ((lines_hatebigram = lists_hatebigram.readLine()) != null) {
+                    if (liness_hatebigram.add(lines_hatebigram)) {
+                        File datasapihate2bigram = new File("DATA_BIGRAM/proses_input_bigram_6.txt"); 
+                        PrintWriter prsapihate2bigram = new PrintWriter(new FileWriter(datasapihate2bigram, true)); 
+                        prsapihate2bigram.println(lines_hatebigram); 
+                        prsapihate2bigram.close();
+                           // durung iso nge print
+                        String texthatebigram = "hatespeech"; 
+                        File hasil_unigram_awalbigram = new File("DATA_BIGRAM/hasil_bigram_awal.txt"); 
+                        PrintWriter prtexthatebigram = new PrintWriter(new FileWriter(hasil_unigram_awalbigram, true)); 
+                        prtexthatebigram.println(texthatebigram);
+                        prtexthatebigram.close();
+
+                        File hasil_macanbigram = new File("DATA_BIGRAM/hasil_bigram_hatespeech.txt"); 
+                        PrintWriter hasil_macanhatebigram = new PrintWriter(new FileWriter(hasil_macanbigram, true)); 
+                        hasil_macanhatebigram.println(texthatebigram);
+                        hasil_macanhatebigram.close();
+                    }; 
+		}
+            
+
+ ///////////////////////////////    START PER-HITUNG-AN NAIVE BAYES CLASSIFIER 
+            String olkjnjbigram ="DATA_BIGRAM/input_bigram.txt"; 
+            String oijuioubigram = null; 
+            oijuioubigram = new String(Files.readAllBytes(Paths.get(olkjnjbigram)));
+            String[] ukjmyhtrfbigram = oijuioubigram.split("\\s+");
+            int esrfwebigram  = ukjmyhtrfbigram.length; 
+            int ewrwebigram = 0;
+            if(esrfwebigram != ewrwebigram){
+                unigram.setVisible(true);
+                naive.setVisible(true);
+                bigram.setVisible(true);
+                String jgoodbigram ="DATA_BIGRAM/bigram_goodspeech.txt"; 
+                String pjgoodbigram= null; 
+                pjgoodbigram = new String(Files.readAllBytes(Paths.get(jgoodbigram)));
+                String[] opjgoodbigram = pjgoodbigram.split("\\s+");
+                int Barisjgoodbigram  = opjgoodbigram.length; 
+                String jumlahBarisjgoodbigram  = Integer.toString(Barisjgoodbigram);
+                goods1.setText("Data Goodspeech = " + jumlahBarisjgoodbigram);
+
+                String jhatebigram ="DATA_BIGRAM/bigram_hatespeech.txt"; 
+                String pjhatebigram= null; 
+                pjhatebigram = new String(Files.readAllBytes(Paths.get(jhatebigram)));
+                String[] opjhatebigram = pjhatebigram.split("\\s+");
+                int Barisjhatebigram  = opjhatebigram.length; 
+                String jumlahBarisjhatebigram  = Integer.toString(Barisjhatebigram);
+                hates1.setText("Data Hatespeech = " + jumlahBarisjhatebigram);
+
+                int data_goodhatebigram = Barisjgoodbigram + Barisjhatebigram;
+                String jumlahdata_goodhatebigram  = Integer.toString(data_goodhatebigram);
+                goodhates1.setText("Data Total = " + jumlahdata_goodhatebigram);
+
+               // HITUNG JUMLAH INPUT GOODSPEECH
+                String macan1bigram ="DATA_BIGRAM/hasil_bigram_goodspeech.txt"; 
+                String macan2bigram = null; 
+                macan2bigram = new String(Files.readAllBytes(Paths.get(macan1bigram)));
+                String[] macan3bigram = macan2bigram.split("\\s+");
+                int macan4bigram  = macan3bigram.length; 
+                String macan5bigram  = Integer.toString(macan4bigram);
+                String kfmdbigram ="goodspeech";
+                boolean lkmklbigram = kfmdbigram.contains(macan2bigram); 
+                if(!lkmklbigram){
+                    macan1.setText("Goodspeech Terdeteksi = " + macan5bigram);
+                }else {
+                    macan1.setText("Goodspeech Terdeteksi = 0");
+                }
+                 // HITUNG JUMLAH INPUT HATESPEECH
+                String singa1bigram ="DATA_BIGRAM/hasil_bigram_hatespeech.txt"; 
+                String singa2bigram = null; 
+                singa2bigram = new String(Files.readAllBytes(Paths.get(singa1bigram)));
+                String[] singa3bigram = singa2bigram.split("\\s+");
+                int singa4bigram  = singa3bigram.length; 
+                String singa5bigram  = Integer.toString(singa4bigram);
+                String kfmdsingabigram ="hatespeech";
+                boolean lkmklsingabigram = kfmdsingabigram.contains(singa2bigram); // jika pake ini maka akibatnya kata hatespeech tidak akan terdeteksi
+                if(!lkmklsingabigram){
+                    singa1.setText("Hatespeech Terdeteksi = " + singa5bigram);
+                }else {
+                    singa1.setText("Hatespeech Terdeteksi = 0");
+                }
+                double nbcgood1bigram = Barisjgoodbigram * macan4bigram;
+                double nbcgood2bigram = data_goodhatebigram * Barisjgoodbigram;
+                double nbcgood3bigram = nbcgood1bigram / nbcgood2bigram;
+                String u_nbcgoodbigram = String.format("%.10f",nbcgood3bigram);
+                if(!lkmklbigram){
+                    totalgood1.setText("Hasil Goodspeech = " + jumlahBarisjgoodbigram +" "+"/"+" "+ jumlahdata_goodhatebigram +" "+"x"+" "+ macan5bigram +" "+"/"+" "+ jumlahBarisjgoodbigram );
+                    hasil_ugood1.setText("="+" "+ u_nbcgoodbigram);
+                }else {
+                    totalgood1.setText("Hasil Goodspeech = ");
+                    hasil_ugood1.setText("="+" " );
+                }
+                double nbchate1bigram = Barisjhatebigram * singa4bigram;
+                double nbchate2bigram = data_goodhatebigram * Barisjhatebigram;
+                double nbchate3bigram = nbchate1bigram / nbchate2bigram;
+                String u_nbchatebigram = String.format("%.10f",nbchate3bigram);
+                if(!lkmklsingabigram){
+                    totalhate1.setText("Hasil Hatespeech = " + jumlahBarisjhatebigram +" "+"/"+" "+ jumlahdata_goodhatebigram +" "+"x"+" "+ singa5bigram +" "+"/"+" "+ jumlahBarisjhatebigram ); 
+                    hasil_uhate1.setText("="+" "+ u_nbchatebigram);
+                }else {
+                    totalhate1.setText("Hasil Hatespeech = ");
+                    hasil_uhate1.setText("="+" " );
+                }
+
+                    String cdbigram ="DATA_BIGRAM/hasil_bigram_awal.txt"; 
+                    String cd2bigram = null; 
+                    cd2bigram = new String(Files.readAllBytes(Paths.get(cdbigram)));
+                    String[] cd3bigram = cd2bigram.split("\\s+");
+                    int cd4bigram  = cd3bigram.length; 
+                    String cd5bigram  = Integer.toString(cd4bigram);
+                    int cd1bigram = 1;
+
+                 // HASIL PERBANINGAN
+                 if(nbcgood3bigram > nbchate3bigram) {
+                    File dataindgoodbigram = new File("DATA_BIGRAM/hasil_bigram_akhir.txt"); 
+                    PrintWriter prinddataindgoodbigram = new PrintWriter(new FileWriter(dataindgoodbigram, false)); 
+                    prinddataindgoodbigram.println("Goodspeech");
+                    prinddataindgoodbigram.close();  
+                 } else if(nbchate3bigram > nbcgood3bigram) {
+                    File dataindhatebigram = new File("DATA_BIGRAM/hasil_bigram_akhir.txt"); 
+                    PrintWriter prinddataindhatebigram = new PrintWriter(new FileWriter(dataindhatebigram, false)); 
+                    prinddataindhatebigram.println("Hatespeech");
+                    prinddataindhatebigram.close();  
+                 }else if(cd4bigram == cd1bigram){ // jika hanya 1 kata yg di input
+                    String cd6bigram ="DATA_BIGRAM/hasil_bigram_awal.txt"; 
+                    String cd7bigram = null; 
+                    cd7bigram = new String(Files.readAllBytes(Paths.get(cd6bigram)));
+                    File cd8bigram = new File("DATA_BIGRAM/hasil_bigram_akhir.txt"); 
+                    PrintWriter cd9bigram = new PrintWriter(new FileWriter(cd8bigram, false)); 
+                    cd9bigram.println(cd7bigram);
+                    cd9bigram.close(); 
+                 }else if(nbcgood3bigram == nbchate3bigram) { // jika hasil nya imbang
+                    File dataindnobigram = new File("DATA_BIGRAM/hasil_bigram_akhir.txt"); 
+                    PrintWriter prinddataindnobigram = new PrintWriter(new FileWriter(dataindnobigram, false)); 
+                    prinddataindnobigram.println("Tidak ada hasil");
+                    prinddataindnobigram.close();  
+                 }
+                 double b_g = nbcgood3bigram + nbchate3bigram;
+                 File b_g_file = new File("DATA_BIGRAM/angka_bigram.txt"); 
+                    PrintWriter pr_b_g = new PrintWriter(new FileWriter(b_g_file, false)); 
+                    pr_b_g.println(b_g);
+                    pr_b_g.close();  
+                    //okbigram = new String(Files.readAllBytes(Paths.get(ojbigram)));
+                    //akhir1.setText(okbigram);
+            }//if
+            
+            
+                    String cdbigram_u_g ="DATA/angka_unigram.txt"; 
+                    String cd2bigram_u_g = null; 
+                    cd2bigram_u_g = new String(Files.readAllBytes(Paths.get(cdbigram_u_g)));
+                    double u_po = Double.parseDouble(cd2bigram_u_g);
+                    String cdbigram_b_g ="DATA_BIGRAM/angka_bigram.txt"; 
+                    String cd2bigram_b_g = null; 
+                    cd2bigram_b_g = new String(Files.readAllBytes(Paths.get(cdbigram_b_g)));
+                    double b_po = Double.parseDouble(cd2bigram_b_g);
+           if(u_po > b_po){
+               ok = new String(Files.readAllBytes(Paths.get(oj)));
+               akhir.setText(ok);
+           }else if( b_po > u_po){
+               okbigram = new String(Files.readAllBytes(Paths.get(ojbigram)));
+               akhir.setText(okbigram);
+           }else if( b_po == u_po){
+               ok = new String(Files.readAllBytes(Paths.get(oj)));
+               akhir.setText(ok);
+           }  
         } catch (Exception e) {
         }
                 
@@ -607,7 +1043,7 @@ public class a extends javax.swing.JFrame {
         // TODO add your handling code here:
         form_input.setVisible(true);
         tombol_simpan.setVisible(true);
-        form_kesimpulan.setVisible(false);
+        //form_kesimpulan.setVisible(false);
        // form_input.setEditable(true);
     }//GEN-LAST:event_analisis1MouseClicked
 
@@ -763,6 +1199,9 @@ public class a extends javax.swing.JFrame {
             
 /////////////////////////////////////////////////////////
                 //  BIGRAM
+            File b0inull = new File("DATA_BIGRAM/bigram_goodspeech_0.txt"); 
+            PrintWriter p0binull = new PrintWriter(new FileWriter(b0inull, false)); 
+            p0binull.println();
             File binull = new File("DATA_BIGRAM/bigram_goodspeech_1.txt"); 
             PrintWriter pbinull = new PrintWriter(new FileWriter(binull, false)); 
             pbinull.println();
@@ -846,12 +1285,19 @@ public class a extends javax.swing.JFrame {
                 //writer.write(res);
                 File bi2 = new File("DATA_BIGRAM/bigram_goodspeech.txt"); 
                 PrintWriter pbi2 = new PrintWriter(new FileWriter(bi2, true)); 
+               // pbi2.println(a[0] + " " + b[0]); //digabung tanpa spasi
+                pbi2.println(a[0] + b[0]);
+                pbi2.close();
+                File b0i2 = new File("DATA_BIGRAM/bigram_goodspeech_0.txt"); 
+                PrintWriter p0bi2 = new PrintWriter(new FileWriter(b0i2, true)); 
                 pbi2.println(a[0] + " " + b[0]);
                 pbi2.close();
             }//while
             
             
-            
+            File b0inullhate = new File("DATA_BIGRAM/bigram_hatespeech_0.txt"); 
+            PrintWriter p0binullhate = new PrintWriter(new FileWriter(b0inullhate, false)); 
+            p0binullhate.println();
             File binullhate = new File("DATA_BIGRAM/bigram_hatespeech_1.txt"); 
             PrintWriter pbinullhate = new PrintWriter(new FileWriter(binullhate, false)); 
             pbinullhate.println();
@@ -935,7 +1381,12 @@ public class a extends javax.swing.JFrame {
                 //writer.write(res);
                 File bi2hate = new File("DATA_BIGRAM/bigram_hatespeech.txt"); 
                 PrintWriter pbi2hate = new PrintWriter(new FileWriter(bi2hate, true)); 
-                pbi2hate.println(ahate[0] + " " + bhate[0]);
+                //pbi2hate.println(ahate[0] + " " + bhate[0]);  //digabung tanoa spasi
+                pbi2hate.println(ahate[0] + bhate[0]);
+                pbi2hate.close();
+                File b0i2hate = new File("DATA_BIGRAM/bigram_hatespeech_0.txt"); 
+                PrintWriter p0bi2hate = new PrintWriter(new FileWriter(b0i2hate, true)); 
+                p0bi2hate.println(ahate[0] + " " + bhate[0]);  
                 pbi2hate.close();
             }//while
             
@@ -951,9 +1402,10 @@ public class a extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new a().setVisible(true);
-                form_kesimpulan.setVisible(false);
+                //form_kesimpulan.setVisible(false);
+                unigram.setVisible(false);
                 naive.setVisible(false);
-                svm.setVisible(false);
+                bigram.setVisible(false);
                 
             }
         });
@@ -962,24 +1414,32 @@ public class a extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel akhir;
     private javax.swing.JLabel analisis1;
+    private static javax.swing.JLabel bigram;
     private static javax.swing.JTextField form_input;
-    private static javax.swing.JTextField form_kesimpulan;
     private javax.swing.JLabel goodhates;
+    private javax.swing.JLabel goodhates1;
     private javax.swing.JLabel goods;
+    private javax.swing.JLabel goods1;
     private javax.swing.JLabel hasil_ugood;
+    private javax.swing.JLabel hasil_ugood1;
     private javax.swing.JLabel hasil_uhate;
+    private javax.swing.JLabel hasil_uhate1;
     private javax.swing.JLabel hates;
+    private javax.swing.JLabel hates1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel judul;
-    private javax.swing.JLabel kesimpulan;
     private javax.swing.JLabel macan;
+    private javax.swing.JLabel macan1;
     private static javax.swing.JLabel naive;
     private javax.swing.JPanel navbar;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel singa;
-    private static javax.swing.JLabel svm;
+    private javax.swing.JLabel singa1;
     private static javax.swing.JButton tombol_simpan;
     private javax.swing.JLabel totalgood;
+    private javax.swing.JLabel totalgood1;
     private javax.swing.JLabel totalhate;
+    private javax.swing.JLabel totalhate1;
+    private static javax.swing.JLabel unigram;
     // End of variables declaration//GEN-END:variables
 }
