@@ -515,9 +515,13 @@ public class a extends javax.swing.JFrame {
             PrintWriter pkalnullkosongfn = new PrintWriter(new FileWriter(inputkosongfn, false));
             pkalnullkosongfn.println();
             
-            File inputkosong_u_g = new File("DATA/angka_unigram.txt"); 
+            File inputkosong_u_g = new File("DATA/angka_tp_unigram.txt"); 
             PrintWriter pkalnullkosong_u_g = new PrintWriter(new FileWriter(inputkosong_u_g, false));
             pkalnullkosong_u_g.println();
+            
+            File inputkosong_u_g_tn = new File("DATA/angka_tn_unigram.txt"); 
+            PrintWriter pkalnullkosong_u_g_tn = new PrintWriter(new FileWriter(inputkosong_u_g_tn, false));
+            pkalnullkosong_u_g_tn.println();
             
             File proseskosong1 = new File("DATA/proses_input_unigram_1.txt"); 
             PrintWriter prosesnullkosong1 = new PrintWriter(new FileWriter(proseskosong1, false));
@@ -760,9 +764,17 @@ public class a extends javax.swing.JFrame {
                 if(!lkmkl){
                     macan.setText("Goodspeech Terdeteksi = " + macan5);
                     tp.setText("TP = " + macan5);
+                    File u_g_file_tp = new File("DATA/angka_tp_unigram.txt"); 
+                    PrintWriter pr_u_g_tp = new PrintWriter(new FileWriter(u_g_file_tp, false)); 
+                    pr_u_g_tp.println(macan5);
+                    pr_u_g_tp.close();
                 }else {
                     macan.setText("Goodspeech Terdeteksi = 0");
                     tp.setText("TP = 0" );
+                    File u_g_file_tp = new File("DATA/angka_tp_unigram.txt"); 
+                    PrintWriter pr_u_g_tp = new PrintWriter(new FileWriter(u_g_file_tp, false)); 
+                    pr_u_g_tp.println("0");
+                    pr_u_g_tp.close();  
                 }
                  // HITUNG JUMLAH INPUT HATESPEECH
                 String singa1 ="DATA/hasil_unigram_hatespeech.txt"; 
@@ -776,29 +788,55 @@ public class a extends javax.swing.JFrame {
                 if(!lkmklsinga){
                     singa.setText("Hatespeech Terdeteksi = " + singa5);
                     tn.setText("TN = " + singa5);
+                    File u_g_file_tn = new File("DATA/angka_tn_unigram.txt"); 
+                    PrintWriter pr_u_g_tn = new PrintWriter(new FileWriter(u_g_file_tn, false)); 
+                    pr_u_g_tn.println(singa5);
+                    pr_u_g_tn.close();
                 }else {
                     singa.setText("Hatespeech Terdeteksi = 0");
                     tn.setText("TN = 0");
+                    File u_g_file_tn = new File("DATA/angka_tn_unigram.txt"); 
+                    PrintWriter pr_u_g_tn = new PrintWriter(new FileWriter(u_g_file_tn, false)); 
+                    pr_u_g_tn.println("0");
+                    pr_u_g_tn.close();
                 }
-                double nbcgood1 = Barisjgood * macan4;
+                
+                
+                    //String angka_u_tp ="DATA/angka_tp_unigram.txt"; 
+                    //String cd2angka_u_tp = null; 
+                    //cd2angka_u_tp = new String(Files.readAllBytes(Paths.get(angka_u_tp)));
+                    //int macan4_tyz = Integer.parseInt(cd2angka_u_tp);
+                    BufferedReader angka_u_tp = new BufferedReader(new FileReader("DATA/angka_tp_unigram.txt"));
+                    String cd2angka_u_tp = angka_u_tp.readLine();
+                    int macan4_tyz = Integer.parseInt(cd2angka_u_tp);
+                    
+                    //String angka_u_tn ="DATA/angka_tn_unigram.txt"; 
+                    //String cd2angka_u_tn = null; 
+                    //cd2angka_u_tn = new String(Files.readAllBytes(Paths.get(angka_u_tn)));
+                    //int singa4_tyz = Integer.parseInt(cd2angka_u_tn);
+                    BufferedReader angka_u_tn = new BufferedReader(new FileReader("DATA/angka_tn_unigram.txt"));
+                    String cd2angka_u_tn = angka_u_tn.readLine();
+                    int singa4_tyz = Integer.parseInt(cd2angka_u_tn);
+                    
+                double nbcgood1 = Barisjgood * macan4_tyz;
                 double nbcgood2 = data_goodhate * Barisjgood;
                 double nbcgood3 = nbcgood1 / nbcgood2;
                 //String unigram_nbcgood  = Double.toString(nbcgood3);
                 String u_nbcgood = String.format("%.10f",nbcgood3);
                 if(!lkmkl){
-                    totalgood.setText("Hasil Goodspeech = " + jumlahBarisjgood +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ macan5 +" "+"/"+" "+ jumlahBarisjgood );
+                    totalgood.setText("Hasil Goodspeech = " + jumlahBarisjgood +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ macan4_tyz +" "+"/"+" "+ jumlahBarisjgood );
                     hasil_ugood.setText("="+" "+ u_nbcgood);
                 }else {
                     totalgood.setText("Hasil Goodspeech = ");
                     hasil_ugood.setText("="+" " );
                 }
-                double nbchate1 = Barisjhate * singa4;
+                double nbchate1 = Barisjhate * singa4_tyz;
                 double nbchate2 = data_goodhate * Barisjhate;
                 double nbchate3 = nbchate1 / nbchate2;
                 //String unigram_nbchate  = Double.toString(nbchate3);
                 String u_nbchate = String.format("%.10f",nbchate3);
                 if(!lkmklsinga){
-                    totalhate.setText("Hasil Hatespeech = " + jumlahBarisjhate +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ singa5 +" "+"/"+" "+ jumlahBarisjhate ); 
+                    totalhate.setText("Hasil Hatespeech = " + jumlahBarisjhate +" "+"/"+" "+ jumlahdata_goodhate +" "+"x"+" "+ singa4_tyz +" "+"/"+" "+ jumlahBarisjhate ); 
                     hasil_uhate.setText("="+" "+ u_nbchate);
                 }else {
                     totalhate.setText("Hasil Hatespeech = ");
@@ -839,11 +877,11 @@ public class a extends javax.swing.JFrame {
                     prinddataindno.println("Tidak ada hasil");
                     prinddataindno.close();  
                  }
-                 double u_g = nbcgood3 + nbchate3;
-                 File u_g_file = new File("DATA/angka_unigram.txt"); 
-                    PrintWriter pr_u_g = new PrintWriter(new FileWriter(u_g_file, false)); 
-                    pr_u_g.println(u_g);
-                    pr_u_g.close();  
+                 //double u_g = nbcgood3 + nbchate3;
+                 //File u_g_file = new File("DATA/angka_unigram.txt"); 
+                    //PrintWriter pr_u_g = new PrintWriter(new FileWriter(u_g_file, false)); 
+                    //pr_u_g.println(u_g);
+                    //pr_u_g.close();  
                     //ok = new String(Files.readAllBytes(Paths.get(oj)));
                     //akhir.setText(ok);
                 
@@ -868,33 +906,34 @@ public class a extends javax.swing.JFrame {
                     if(cfp_length.equals("") || cfn_length.equals("")){
                          fp1.setText("FP = " + zps);
                         fn1.setText("FN = " + zps);
-                        double akurasi1 = macan4 + singa4; 
-                        double akurasi2 = macan4 + zps + zps + singa4;
+                        double akurasi1 = macan4_tyz + singa4_tyz; 
+                        double akurasi2 = macan4_tyz + zps + zps + singa4_tyz;
                         double akurasi3 = akurasi1 / akurasi2;
                         double akurasi4 = akurasi3 * 100;
                         String akurasi5 = String.format("%.1f",akurasi4);
                         Accuracy.setText("Accuracy = " + "" +akurasi5 + "%");
-                        double precission1 = macan4 + zps;
-                        double precission2 = macan4 / precission1;
+                        double precission1 = macan4_tyz + zps;
+                        double precission2 = macan4_tyz / precission1;
                         double precission3 = precission2 * 100;
                         String precission4 = String.format("%.1f",precission3);
                         Precision.setText("Precission = " + "" +precission4 + "%");
-                        double recall1 = macan4 + zps;
-                        double recall2 = macan4 / recall1;
+                        double recall1 = macan4_tyz + zps;
+                        double recall2 = macan4_tyz / recall1;
                         double recall3 = recall2 * 100;
                         String recall4 = String.format("%.1f",recall3);
                         Recall.setText("Recall = " + "" + recall4 + "%");
-                        double tprate1 = macan4 + zps;
-                        double tprate2 = macan4 / tprate1;
+                        double tprate1 = macan4_tyz + zps;
+                        double tprate2 = macan4_tyz / tprate1;
                         double tprate3 = tprate2 * 100;
                         String tprate4 = String.format("%.1f",tprate3);
                         tprate.setText("TP Rate = " + "" + tprate4 + "%");
-                        double tnrate1 = singa4 + zps;
+                        double tnrate1 = singa4_tyz + zps;
                         double tnrate2 = singa4 / tnrate1;
                         double tnrate3 = tnrate2 * 100;
                         String tnrate4 = String.format("%.1f",tnrate3);
                         tnrate.setText("TN Rate= " + "" + tnrate4 + "%");
-                            double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
+                            //double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
+                             double hab01 = akurasi4;
                             File hab01_file = new File("DATA/ratarata_unigram.txt"); 
                             PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
                             pr_hab01.println(hab01);
@@ -902,33 +941,34 @@ public class a extends javax.swing.JFrame {
                     }else{
                         fp1.setText("FP = " + j_fp_length);
                         fn1.setText("FN = " + j_fn_length);
-                        double akurasi1 = macan4 + singa4; 
-                        double akurasi2 = macan4 + B_fp_length + B_fn_length + singa4;
+                        double akurasi1 = macan4_tyz + singa4_tyz; 
+                        double akurasi2 = macan4_tyz + B_fp_length + B_fn_length + singa4_tyz;
                         double akurasi3 = akurasi1 / akurasi2;
                         double akurasi4 = akurasi3 * 100;
                         String akurasi5 = String.format("%.1f",akurasi4);
                         Accuracy.setText("Accuracy = " + "" +akurasi5 + "%");
-                        double precission1 = macan4 + B_fp_length;
-                        double precission2 = macan4 / precission1;
+                        double precission1 = macan4_tyz + B_fp_length;
+                        double precission2 = macan4_tyz / precission1;
                         double precission3 = precission2 * 100;
                         String precission4 = String.format("%.1f",precission3);
                         Precision.setText("Precission = " + "" +precission4 + "%");
-                        double recall1 = macan4 + B_fn_length;
-                        double recall2 = macan4 / recall1;
+                        double recall1 = macan4_tyz + B_fn_length;
+                        double recall2 = macan4_tyz / recall1;
                         double recall3 = recall2 * 100;
                         String recall4 = String.format("%.1f",recall3);
                         Recall.setText("Recall = " + "" + recall4 + "%");
-                        double tprate1 = macan4 + B_fn_length;
-                        double tprate2 = macan4 / tprate1;
+                        double tprate1 = macan4_tyz + B_fn_length;
+                        double tprate2 = macan4_tyz / tprate1;
                         double tprate3 = tprate2 * 100;
                         String tprate4 = String.format("%.1f",tprate3);
                         tprate.setText("TP Rate = " + "" + tprate4 + "%");
-                        double tnrate1 = singa4 + B_fp_length;
-                        double tnrate2 = singa4 / tnrate1;
+                        double tnrate1 = singa4_tyz + B_fp_length;
+                        double tnrate2 = singa4_tyz / tnrate1;
                         double tnrate3 = tnrate2 * 100;
                         String tnrate4 = String.format("%.1f",tnrate3);
                         tnrate.setText("TN Rate= " + "" + tnrate4 + "%");
-                            double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
+                            //double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
+                             double hab01 = akurasi4;
                             File hab01_file = new File("DATA/ratarata_unigram.txt"); 
                             PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
                             pr_hab01.println(hab01);
@@ -966,6 +1006,10 @@ public class a extends javax.swing.JFrame {
             File proseskosong1bigramfn = new File("DATA_BIGRAM/false_negatif_bigram.txt"); 
             PrintWriter prosesnullkosong1bigramfn = new PrintWriter(new FileWriter(proseskosong1bigramfn, false));
             prosesnullkosong1bigramfn.println();
+            
+            File inputkosong_u_b = new File("DATA_BIGRAM/angka_bigram.txt"); 
+            PrintWriter pkalnullkosong_u_b = new PrintWriter(new FileWriter(inputkosong_u_b, false));
+            pkalnullkosong_u_b.println();
      
             File proseskosong1bigram = new File("DATA_BIGRAM/proses_input_bigram_1.txt"); 
             PrintWriter prosesnullkosong1bigram = new PrintWriter(new FileWriter(proseskosong1bigram, false));
@@ -1279,9 +1323,17 @@ public class a extends javax.swing.JFrame {
                 if(!lkmklbigram){
                     macan1.setText("Goodspeech Terdeteksi = " + macan5bigram);
                     tp1.setText("TP = " + macan5bigram);
+                    File u_g_file_tpbigram = new File("DATA_BIGRAM/angka_tp_bigram.txt"); 
+                    PrintWriter pr_u_g_tpbigram = new PrintWriter(new FileWriter(u_g_file_tpbigram, false)); 
+                    pr_u_g_tpbigram.println(macan5bigram);
+                    pr_u_g_tpbigram.close();
                 }else {
                     macan1.setText("Goodspeech Terdeteksi = 0");
                     tp1.setText("TP = 0");
+                    File u_g_file_tpbigram = new File("DATA_BIGRAM/angka_tp_bigram.txt"); 
+                    PrintWriter pr_u_g_tpbigram = new PrintWriter(new FileWriter(u_g_file_tpbigram, false)); 
+                    pr_u_g_tpbigram.println("0");
+                    pr_u_g_tpbigram.close();
                 }
                  // HITUNG JUMLAH INPUT HATESPEECH
                 String singa1bigram ="DATA_BIGRAM/hasil_bigram_hatespeech.txt"; 
@@ -1295,27 +1347,44 @@ public class a extends javax.swing.JFrame {
                 if(!lkmklsingabigram){
                     singa1.setText("Hatespeech Terdeteksi = " + singa5bigram);
                     tn1.setText("TN = " + singa5bigram);
+                    File u_g_file_tnbigram = new File("DATA_BIGRAM/angka_tn_bigram.txt"); 
+                    PrintWriter pr_u_g_tnbigram = new PrintWriter(new FileWriter(u_g_file_tnbigram, false)); 
+                    pr_u_g_tnbigram.println(singa5bigram);
+                    pr_u_g_tnbigram.close();
                 }else {
                     singa1.setText("Hatespeech Terdeteksi = 0");
                     tn1.setText("TN = 0");
+                    File u_g_file_tnbigram = new File("DATA_BIGRAM/angka_tn_bigram.txt"); 
+                    PrintWriter pr_u_g_tnbigram = new PrintWriter(new FileWriter(u_g_file_tnbigram, false)); 
+                    pr_u_g_tnbigram.println("0");
+                    pr_u_g_tnbigram.close();
                 }
-                double nbcgood1bigram = Barisjgoodbigram * macan4bigram;
+                
+                    BufferedReader angka_u_tp_bigram = new BufferedReader(new FileReader("DATA_BIGRAM/angka_tp_bigram.txt"));
+                    String cd2angka_u_tp_bigram = angka_u_tp_bigram.readLine();
+                    int macan4bigram_tyz = Integer.parseInt(cd2angka_u_tp_bigram);
+                    
+                    BufferedReader angka_u_tn_bigram = new BufferedReader(new FileReader("DATA_BIGRAM/angka_tn_bigram.txt"));
+                    String cd2angka_u_tn_bigram = angka_u_tn_bigram.readLine();
+                    int singa4bigram_tyz = Integer.parseInt(cd2angka_u_tn_bigram);
+                
+                double nbcgood1bigram = Barisjgoodbigram * macan4bigram_tyz;
                 double nbcgood2bigram = data_goodhatebigram * Barisjgoodbigram;
                 double nbcgood3bigram = nbcgood1bigram / nbcgood2bigram;
                 String u_nbcgoodbigram = String.format("%.10f",nbcgood3bigram);
                 if(!lkmklbigram){
-                    totalgood1.setText("Hasil Goodspeech = " + jumlahBarisjgoodbigram +" "+"/"+" "+ jumlahdata_goodhatebigram +" "+"x"+" "+ macan5bigram +" "+"/"+" "+ jumlahBarisjgoodbigram );
+                    totalgood1.setText("Hasil Goodspeech = " + jumlahBarisjgoodbigram +" "+"/"+" "+ jumlahdata_goodhatebigram +" "+"x"+" "+ macan4bigram_tyz +" "+"/"+" "+ jumlahBarisjgoodbigram );
                     hasil_ugood1.setText("="+" "+ u_nbcgoodbigram);
                 }else {
                     totalgood1.setText("Hasil Goodspeech = ");
                     hasil_ugood1.setText("="+" " );
                 }
-                double nbchate1bigram = Barisjhatebigram * singa4bigram;
+                double nbchate1bigram = Barisjhatebigram * singa4bigram_tyz;
                 double nbchate2bigram = data_goodhatebigram * Barisjhatebigram;
                 double nbchate3bigram = nbchate1bigram / nbchate2bigram;
                 String u_nbchatebigram = String.format("%.10f",nbchate3bigram);
                 if(!lkmklsingabigram){
-                    totalhate1.setText("Hasil Hatespeech = " + jumlahBarisjhatebigram +" "+"/"+" "+ jumlahdata_goodhatebigram +" "+"x"+" "+ singa5bigram +" "+"/"+" "+ jumlahBarisjhatebigram ); 
+                    totalhate1.setText("Hasil Hatespeech = " + jumlahBarisjhatebigram +" "+"/"+" "+ jumlahdata_goodhatebigram +" "+"x"+" "+ singa4bigram_tyz +" "+"/"+" "+ jumlahBarisjhatebigram ); 
                     hasil_uhate1.setText("="+" "+ u_nbchatebigram);
                 }else {
                     totalhate1.setText("Hasil Hatespeech = ");
@@ -1355,11 +1424,11 @@ public class a extends javax.swing.JFrame {
                     prinddataindnobigram.println("Tidak ada hasil");
                     prinddataindnobigram.close();  
                  }
-                 double b_g = nbcgood3bigram + nbchate3bigram;
-                 File b_g_file = new File("DATA_BIGRAM/angka_bigram.txt"); 
-                    PrintWriter pr_b_g = new PrintWriter(new FileWriter(b_g_file, false)); 
-                    pr_b_g.println(b_g);
-                    pr_b_g.close();  
+                 //double b_g = nbcgood3bigram + nbchate3bigram;
+                 //File b_g_file = new File("DATA_BIGRAM/angka_bigram.txt"); 
+                    //PrintWriter pr_b_g = new PrintWriter(new FileWriter(b_g_file, false)); 
+                    //pr_b_g.println(b_g);
+                    //pr_b_g.close();  
                     //okbigram = new String(Files.readAllBytes(Paths.get(ojbigram)));
                     //akhir1.setText(okbigram);
             
@@ -1385,33 +1454,34 @@ public class a extends javax.swing.JFrame {
                     if(cfp_lengthbigram.equals("") || cfn_lengthbigram.equals("")){
                         fp2.setText("FP = " + zpsbigram);
                         fn2.setText("FN = " + zpsbigram);
-                        double akurasi1bigram = macan4bigram + singa4bigram; 
-                        double akurasi2bigram = macan4bigram + zpsbigram + zpsbigram + singa4bigram;
+                        double akurasi1bigram = macan4bigram_tyz + singa4bigram_tyz; 
+                        double akurasi2bigram = macan4bigram_tyz + zpsbigram + zpsbigram + singa4bigram_tyz;
                         double akurasi3bigram = akurasi1bigram / akurasi2bigram;
                         double akurasi4bigram = akurasi3bigram * 100;
                         String akurasi5bigram = String.format("%.1f",akurasi4bigram);
                         Accuracy1.setText("Accuracy = " + "" +akurasi5bigram + "%");
-                        double precission1bigram = macan4bigram + zpsbigram;
-                        double precission2bigram = macan4bigram / precission1bigram;
+                        double precission1bigram = macan4bigram_tyz + zpsbigram;
+                        double precission2bigram = macan4bigram_tyz / precission1bigram;
                         double precission3bigram = precission2bigram * 100;
                         String precission4bigram = String.format("%.1f",precission3bigram);
                         Precision1.setText("Precission = " + "" + precission4bigram + "%");
-                        double recall1bigram = macan4bigram + zpsbigram;
-                        double recall2bigram = macan4bigram / recall1bigram;
+                        double recall1bigram = macan4bigram_tyz + zpsbigram;
+                        double recall2bigram = macan4bigram_tyz / recall1bigram;
                         double recall3bigram = recall2bigram * 100;
                         String recall4bigram = String.format("%.1f",recall3bigram);
                         Recall1.setText("Recall = " + "" + recall4bigram + "%");
-                        double tprate1bigram = macan4bigram + zpsbigram;
-                        double tprate2bigram = macan4bigram / tprate1bigram;
+                        double tprate1bigram = macan4bigram_tyz + zpsbigram;
+                        double tprate2bigram = macan4bigram_tyz / tprate1bigram;
                         double tprate3bigram = tprate2bigram * 100;
                         String tprate4bigram = String.format("%.1f",tprate3bigram);
                         tprate1.setText("TP Rate = " + "" + tprate4bigram + "%");
-                        double tnrate1bigram = singa4bigram + zpsbigram;
-                        double tnrate2bigram = singa4bigram / tnrate1bigram;
+                        double tnrate1bigram = singa4bigram_tyz + zpsbigram;
+                        double tnrate2bigram = singa4bigram_tyz / tnrate1bigram;
                         double tnrate3bigram = tnrate2bigram * 100;
                         String tnrate4bigram = String.format("%.1f",tnrate3bigram);
                         tnrate1.setText("TN Rate= " + "" + tnrate4bigram + "%");
-                            double hab01 = akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram;
+                            //double hab01 = akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram;
+                             double hab01 = akurasi4bigram;
                             File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
                             PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
                             pr_hab01.println(hab01);
@@ -1419,37 +1489,44 @@ public class a extends javax.swing.JFrame {
                     }else{
                         fp2.setText("FP = " + j_fp_lengthbigram);
                         fn2.setText("FN = " + j_fn_lengthbigram);
-                        double akurasi1bigram = macan4bigram + singa4bigram; 
-                        double akurasi2bigram = macan4bigram + B_fp_lengthbigram + B_fn_lengthbigram + singa4bigram;
+                        double akurasi1bigram = macan4bigram_tyz + singa4bigram_tyz; 
+                        double akurasi2bigram = macan4bigram_tyz + B_fp_lengthbigram + B_fn_lengthbigram + singa4bigram_tyz;
                         double akurasi3bigram = akurasi1bigram / akurasi2bigram;
                         double akurasi4bigram = akurasi3bigram * 100;
                         String akurasi5bigram = String.format("%.1f",akurasi4bigram);
                         Accuracy1.setText("Accuracy = " + "" +akurasi5bigram + "%");
-                        double precission1bigram = macan4bigram + B_fp_lengthbigram;
-                        double precission2bigram = macan4bigram / precission1bigram;
+                        double precission1bigram = macan4bigram_tyz + B_fp_lengthbigram;
+                        double precission2bigram = macan4bigram_tyz / precission1bigram;
                         double precission3bigram = precission2bigram * 100;
                         String precission4bigram = String.format("%.1f",precission3bigram);
                         Precision1.setText("Precission = " + "" + precission4bigram + "%");
-                        double recall1bigram = macan4bigram + B_fn_lengthbigram;
-                        double recall2bigram = macan4bigram / recall1bigram;
+                        double recall1bigram = macan4bigram_tyz + B_fn_lengthbigram;
+                        double recall2bigram = macan4bigram_tyz / recall1bigram;
                         double recall3bigram = recall2bigram * 100;
                         String recall4bigram = String.format("%.1f",recall3bigram);
                         Recall1.setText("Recall = " + "" + recall4bigram + "%");
-                        double tprate1bigram = macan4bigram + B_fn_lengthbigram;
-                        double tprate2bigram = macan4bigram / tprate1bigram;
+                        double tprate1bigram = macan4bigram_tyz + B_fn_lengthbigram;
+                        double tprate2bigram = macan4bigram_tyz / tprate1bigram;
                         double tprate3bigram = tprate2bigram * 100;
                         String tprate4bigram = String.format("%.1f",tprate3bigram);
                         tprate1.setText("TP Rate = " + "" + tprate4bigram + "%");
-                        double tnrate1bigram = macan4bigram + B_fp_lengthbigram;
-                        double tnrate2bigram = singa4bigram / tnrate1bigram;
+                        double tnrate1bigram = singa4bigram_tyz + B_fp_lengthbigram;
+                        double tnrate2bigram = singa4bigram_tyz / tnrate1bigram;
                         double tnrate3bigram = tnrate2bigram * 100;
                         String tnrate4bigram = String.format("%.1f",tnrate3bigram);
                         tnrate1.setText("TN Rate= " + "" + tnrate4bigram + "%");
-                            double hab01 = akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram;
+                            //double hab01 =akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram;
+                            double hab01 = akurasi4bigram;
                             File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
                             PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
                             pr_hab01.println(hab01);
-                            pr_hab01.close();
+                            pr_hab01.close();                     
+                            //double[] hab01 ={akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram};
+                            //for(int i=0; i < hab01.length; i++){
+                                //if(hab01[i]!=hab01[i]){
+                                    //hab01[i] = 0;
+                                //}
+                            //}
                     }
                     
                     

@@ -3,11 +3,4 @@ goodspeech
 goodspeech
 goodspeech
 goodspeech
-goodspeech
-goodspeech
-goodspeech
-goodspeech
-goodspeech
-goodspeech
-hatespeech
 hatespeech

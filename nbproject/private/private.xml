@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA/data_hatespeech.txt</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA/data_goodspeech.txt</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA_BIGRAM/ratarata_bigram.txt</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA/ratarata_unigram.txt</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/src/fpir/a.java</file>
         </group>
     </open-files>
