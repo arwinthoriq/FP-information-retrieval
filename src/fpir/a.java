@@ -501,6 +501,9 @@ public class a extends javax.swing.JFrame {
         
         String cinput_cvbigram= null;
         String cinput_bnbigram= null;
+        
+        String talabigram ="DATA/stopword_list_tala.txt"; 
+	String ctalabigram= null;
         try {
 ////////////////////////////////////  UNIGRAM - NAIVE BAYES     //////////////////////////////////////
             File inputkosong = new File("DATA/input.txt"); 
@@ -1011,6 +1014,10 @@ public class a extends javax.swing.JFrame {
             PrintWriter pkalnullkosong_u_b = new PrintWriter(new FileWriter(inputkosong_u_b, false));
             pkalnullkosong_u_b.println();
      
+            File proseskosong1bigram0= new File("DATA_BIGRAM/input_bigram_0.txt"); 
+            PrintWriter prosesnullkosong1bigram0 = new PrintWriter(new FileWriter(proseskosong1bigram0, false));
+            prosesnullkosong1bigram0.println();
+            
             File proseskosong1bigram = new File("DATA_BIGRAM/proses_input_bigram_1.txt"); 
             PrintWriter prosesnullkosong1bigram = new PrintWriter(new FileWriter(proseskosong1bigram, false));
             prosesnullkosong1bigram.println();
@@ -1064,8 +1071,24 @@ public class a extends javax.swing.JFrame {
             PrintWriter bpbinull05 = new PrintWriter(new FileWriter(bbinull05, false)); 
             bpbinull05.println();
             
+            String kalmatbigram; 
+            kalmatbigram = form_input.getText(); 
+            String kecilibigram = kalmatbigram.toLowerCase(); 
+            String simbolbigram = kecilibigram.replaceAll("[^\\p{L}\\s]", "");  //  \\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}
+            String[] fkalbigram = simbolbigram.split("\\s+"); 
+            ctalabigram = new String(Files.readAllBytes(Paths.get(talabigram)));
+            for(String hukalbigram : fkalbigram) { 
+               boolean ikanbigram = ctalabigram.contains(hukalbigram); 
+               if (!ikanbigram){ 
+                File dataindbigram0 = new File("DATA_BIGRAM/input_bigram_0.txt"); 
+                PrintWriter prdataindbigram0 = new PrintWriter(new FileWriter(dataindbigram0, true)); 
+                prdataindbigram0.println(hukalbigram); 
+                prdataindbigram0.close();
+                }//if
+            }//for
+            
             //1
-            BufferedReader reader1 = new BufferedReader(new FileReader("DATA/input.txt"));
+            BufferedReader reader1 = new BufferedReader(new FileReader("DATA_BIGRAM/input_bigram_0.txt"));
             String satu = reader1.readLine();
             File bi00 = new File("DATA_BIGRAM/input_bigram_1.txt"); 
             PrintWriter pbi00 = new PrintWriter(new FileWriter(bi00, true)); 
@@ -1076,7 +1099,12 @@ public class a extends javax.swing.JFrame {
             String be1 ="DATA_BIGRAM/input_bigram_1.txt"; 
             String bes1= null; 
             bes1 = new String(Files.readAllBytes(Paths.get(be1)));
-            for(String yab : fkal9_i){
+            String be10 ="DATA_BIGRAM/input_bigram_0.txt"; 
+            String bes10= null; 
+            bes10 = new String(Files.readAllBytes(Paths.get(be10)));
+            String kecil9_ibigram0 = bes10.toLowerCase(); 
+            String[] fkal9_ibigram0 = kecil9_ibigram0.split("\\s+");
+            for(String yab : fkal9_ibigram0){
                 boolean ajax = bes1.contains(yab);
                 if(!ajax){
                     File bi0 = new File("DATA_BIGRAM/input_bigram_2.txt"); 
