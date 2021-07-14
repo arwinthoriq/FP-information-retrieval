@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA/false_positif_unigram.txt</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA/false_negatif_unigram.txt</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA/data_hatespeech.txt</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA_NGRAM/angka_tn_ngram.txt</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA_NGRAM/hasil_ngram_goodspeech.txt</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/src/fpir/a.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/FPIR/DATA_NGRAM/angka_tp_ngram.txt</file>
         </group>
     </open-files>
 </project-private>
