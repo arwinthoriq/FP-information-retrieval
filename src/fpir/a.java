@@ -1078,10 +1078,18 @@ public class a extends javax.swing.JFrame {
                         tnrate.setText("TN Rate= " + "" + tnrate4 + "%");
                             //double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
                              double hab01 = akurasi4;
-                            File hab01_file = new File("DATA/ratarata_unigram.txt"); 
-                            PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
-                            pr_hab01.println(hab01);
-                            pr_hab01.close();
+                             
+                             if(akurasi5.equals("NaN")){
+                                File hab01_file = new File("DATA/ratarata_unigram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println("0");
+                                pr_hab01.close();
+                             }else{
+                                File hab01_file = new File("DATA/ratarata_unigram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println(hab01);
+                                pr_hab01.close();
+                             }
                     }else{
                         fp1.setText("FP = " + j_fp_length);
                         fn1.setText("FN = " + j_fn_length);
@@ -1113,10 +1121,17 @@ public class a extends javax.swing.JFrame {
                         tnrate.setText("TN Rate= " + "" + tnrate4 + "%");
                             //double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
                              double hab01 = akurasi4;
-                            File hab01_file = new File("DATA/ratarata_unigram.txt"); 
-                            PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
-                            pr_hab01.println(hab01);
-                            pr_hab01.close();
+                             if(akurasi5.equals("NaN")){
+                                File hab01_file = new File("DATA/ratarata_unigram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println("0");
+                                pr_hab01.close();
+                             }else{
+                                File hab01_file = new File("DATA/ratarata_unigram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println(hab01);
+                                pr_hab01.close();
+                             }
                     }
                    // } // dalam proses perhitungan-nya print kosongan masih dihitung (length) 1
                     
@@ -1651,10 +1666,18 @@ public class a extends javax.swing.JFrame {
                         tnrate1.setText("TN Rate= " + "" + tnrate4bigram + "%");
                             //double hab01 = akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram;
                              double hab01 = akurasi4bigram;
-                            File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
-                            PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
-                            pr_hab01.println(hab01);
-                            pr_hab01.close(); 
+                            
+                            if(akurasi5bigram.equals("NaN")){
+                               File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
+                               PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                               pr_hab01.println("0");
+                               pr_hab01.close();   
+                            }else{     
+                               File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
+                               PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                               pr_hab01.println(hab01);
+                               pr_hab01.close();
+                            }  
                     }else{
                         fp2.setText("FP = " + j_fp_lengthbigram);
                         fn2.setText("FN = " + j_fn_lengthbigram);
@@ -1686,10 +1709,18 @@ public class a extends javax.swing.JFrame {
                         tnrate1.setText("TN Rate= " + "" + tnrate4bigram + "%");
                             //double hab01 =akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram;
                             double hab01 = akurasi4bigram;
-                            File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
-                            PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
-                            pr_hab01.println(hab01);
-                            pr_hab01.close();                     
+                            
+                            if(akurasi5bigram.equals("NaN")){
+                                File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println("0");
+                                pr_hab01.close();   
+                            }else{
+                                File hab01_file = new File("DATA_BIGRAM/ratarata_bigram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println(hab01);
+                                pr_hab01.close(); 
+                            }                  
                             //double[] hab01 ={akurasi4bigram + precission3bigram + recall3bigram + tprate3bigram + tnrate3bigram};
                             //for(int i=0; i < hab01.length; i++){
                                 //if(hab01[i]!=hab01[i]){
@@ -2038,7 +2069,7 @@ public class a extends javax.swing.JFrame {
                         fn3.setText("FN = " + zps);
                         double akurasi1 = macan4_tyz + singa4_tyz; 
                         double akurasi2 = macan4_tyz + zps + zps + singa4_tyz;
-                        double akurasi3 = akurasi1 / akurasi2;
+                        double akurasi3 = akurasi1 / akurasi2; //akurasi1 / akurasi2;
                         double akurasi4 = akurasi3 * 100;
                         String akurasi5 = String.format("%.1f",akurasi4);
                         Accuracy3.setText("Accuracy = " + "" +akurasi5 + "%");
@@ -2064,10 +2095,17 @@ public class a extends javax.swing.JFrame {
                         tnrate3n.setText("TN Rate= " + "" + tnrate4 + "%");
                             //double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
                              double hab01 = akurasi4;
-                            File hab01_file = new File("DATA_NGRAM/ratarata_ngram.txt"); 
-                            PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
-                            pr_hab01.println(hab01);
-                            pr_hab01.close();
+                             if(akurasi5.equals("NaN")){
+                                File hab01_file = new File("DATA_NGRAM/ratarata_ngram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println("0");
+                                pr_hab01.close();
+                             }else{
+                                File hab01_file = new File("DATA_NGRAM/ratarata_ngram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println(hab01);
+                                pr_hab01.close();
+                             }
                     }else{
                         fp3.setText("FP = " + j_fp_length);
                         fn3.setText("FN = " + j_fn_length);
@@ -2099,10 +2137,17 @@ public class a extends javax.swing.JFrame {
                         tnrate3n.setText("TN Rate= " + "" + tnrate4 + "%");
                             //double hab01 = akurasi4 + precission3 + recall3 + tprate3 + tnrate3;
                              double hab01 = akurasi4;
-                            File hab01_file = new File("DATA_NGRAM/ratarata_ngram.txt"); 
-                            PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
-                            pr_hab01.println(hab01);
-                            pr_hab01.close();
+                             if(akurasi5.equals("NaN")){
+                                File hab01_file = new File("DATA_NGRAM/ratarata_ngram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println("0");
+                                pr_hab01.close();
+                             }else{
+                                File hab01_file = new File("DATA_NGRAM/ratarata_ngram.txt"); 
+                                PrintWriter pr_hab01 = new PrintWriter(new FileWriter(hab01_file, false)); 
+                                pr_hab01.println(hab01);
+                                pr_hab01.close();
+                             }
                     }
                  
             }//if ngram
@@ -2115,6 +2160,7 @@ public class a extends javax.swing.JFrame {
                     String cd2bigram_u_g = null; 
                     cd2bigram_u_g = new String(Files.readAllBytes(Paths.get(cdbigram_u_g)));
                     double u_po = Double.parseDouble(cd2bigram_u_g);
+                    String cd2bigram_u_g_length = cd2bigram_u_g.toLowerCase(); 
                     String cdbigram_u_g_u ="DATA/hasil_unigram_akhir.txt"; 
                     String cd2bigram_u_g_u = null; 
                     cd2bigram_u_g_u = new String(Files.readAllBytes(Paths.get(cdbigram_u_g_u)));
@@ -2123,6 +2169,7 @@ public class a extends javax.swing.JFrame {
                     String cd2bigram_b_g = null; 
                     cd2bigram_b_g = new String(Files.readAllBytes(Paths.get(cdbigram_b_g)));
                     double b_po = Double.parseDouble(cd2bigram_b_g);
+                    String cd2bigram_b_g_length = cd2bigram_b_g.toLowerCase();
                     String cdbigram_u_g_b ="DATA_BIGRAM/hasil_bigram_akhir.txt"; 
                     String cd2bigram_u_g_b = null; 
                     cd2bigram_u_g_b = new String(Files.readAllBytes(Paths.get(cdbigram_u_g_b)));
@@ -2131,6 +2178,7 @@ public class a extends javax.swing.JFrame {
                     String cd2bigram_b_gn = null; 
                     cd2bigram_b_gn = new String(Files.readAllBytes(Paths.get(cdbigram_b_gn)));
                     double n_pon = Double.parseDouble(cd2bigram_b_gn);
+                    String cd2bigram_b_gn_length = cd2bigram_b_gn.toLowerCase();
                     String cdbigram_u_g_bn ="DATA_NGRAM/hasil_ngram_akhir.txt"; 
                     String cd2bigram_u_g_bn = null; 
                     cd2bigram_u_g_bn = new String(Files.readAllBytes(Paths.get(cdbigram_u_g_bn)));
@@ -2155,7 +2203,25 @@ public class a extends javax.swing.JFrame {
                pake2.setVisible(false);
            } else if(u_po == b_po || u_po == n_pon || b_po == n_pon){
                akhir.setText("Tidak ada hasilnya");
-           }  
+           } //else if(cd2bigram_u_g_length.equals("NaN") || cd2bigram_b_g_length.equals("NaN")){ //u,b=n
+               //akhir.setText(cd2bigram_u_g_bn);
+               //pake3.setText(".");
+               //pake3.setVisible(true);
+               //pake1.setVisible(false);
+               //pake2.setVisible(false);
+           //} else if(cd2bigram_u_g_length.equals("NaN") || cd2bigram_b_gn_length.equals("NaN")){ //u,n=b
+             //  akhir.setText(cd2bigram_u_g_b);
+               //pake2.setText(".");
+               //pake2.setVisible(true);
+               //pake1.setVisible(false);
+               //pake3.setVisible(false);
+           //}else if(cd2bigram_b_g_length.equals("NaN") || cd2bigram_b_gn_length.equals("NaN")){ //b,n=u
+             //  akhir.setText(cd2bigram_u_g_u);
+              // pake1.setText(".");
+               //pake1.setVisible(true);
+               //pake2.setVisible(false);
+               //pake3.setVisible(false);
+           //}
            
            
            // naive.setVisible(true);
